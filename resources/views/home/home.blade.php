@@ -15,9 +15,12 @@
 @endsection
 
 @section('content')
+    {{-- <iframe src="https://www.manviga.com/board/spcg_sale" width="100%" height="600px" style="border: none;"></iframe> --}}
+
     <div class="row gy-6">
         <!-- Congratulations card -->
         <div class="col-md-12 col-lg-4">
+
             <div class="card">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Congratulations Norris! 🎉</h5>

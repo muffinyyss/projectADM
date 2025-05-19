@@ -31,7 +31,7 @@ class AuthController extends Controller
     ]);
 
     // ข้อมูลที่อนุญาตให้เข้าใช้งาน (กำหนดล่วงหน้า)
-    $validSite = 'esm';
+    $validSite = 'spcg';
     $validUsername = 'admin';
     $validPassword = '123';
     $validRole = 'sale';
