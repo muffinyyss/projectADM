@@ -62,7 +62,7 @@
                             <div class="mb-5">
                                 <div class="form-password-toggle">
                                     <div class="input-group input-group-merge">
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-3">
                                             {{-- @error('password')
                                                 <div class="text-danger mb-1">{{ $message }}</div>
                                             @enderror --}}
