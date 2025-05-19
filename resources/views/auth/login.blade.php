@@ -4,21 +4,22 @@
 
 @section('page-style')
     @vite(['resources/assets/vendor/scss/pages/page-auth.scss'])
-
-    <style>
-        /* บังคับให้ label ลอยขึ้นเมื่อ input มีค่า */
-        .form-floating>.form-control:focus~label,
-        .form-floating>.form-control:not(:placeholder-shown)~label {
-            transform: scale(0.85) translateY(-1.5rem);
-            opacity: 1;
+    {{-- <style>
+        .form-floating>label {
+            /* background-color: white; */
+            padding: 0 0.25rem;
+            top: -0.6rem;
+            left: 0.75rem;
+            z-index: 1;
+            color: #495057;
+            font-size: 0.85rem;
+            transition: all 0.2s ease-in-out;
         }
 
-        /* ป้องกัน label ซ้อน input */
-        .form-floating>.form-control::placeholder {
-            opacity: 0;
-            /* ซ่อน placeholder เพื่อไม่ให้ทับ label */
+        .form-floating>.form-control {
+            padding-top: 1.5rem;
         }
-    </style>
+    </style> --}}
 @endsection
 
 @section('content')
@@ -44,14 +45,14 @@
 
                         <form id="formAuthentication" class="mb-5" action="{{ route('login.perform') }}" method="POST">
                             @csrf
-                            <div class="form-floating mb-5">
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('site') is-invalid @enderror"
                                     id="site" name="site" value="{{ old('site') }}" placeholder="Enter your site"
                                     autofocus required />
                                 <label for="site">Site name</label>
                             </div>
 
-                            <div class="form-floating mb-5">
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" value="{{ old(key: 'username') }}"
                                     placeholder="Enter your username" autofocus required />
@@ -124,4 +125,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+
+@section('page-script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputsOrder = ['site', 'username', 'password'];
+
+            for (const id of inputsOrder) {
+                const inputElem = document.getElementById(id);
+                if (inputElem && inputElem.classList.contains('is-invalid')) {
+                    inputElem.value = ''; // ล้างข้อมูลช่องที่ผิด
+                    inputElem.focus(); // ตั้ง focus ไปที่ช่องนั้น
+                    break; // เลิกเช็คต่อหลังพบช่องแรกที่ผิด
+                }
+            }
+        });
+    </script>
 @endsection

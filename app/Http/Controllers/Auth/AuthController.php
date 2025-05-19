@@ -80,7 +80,7 @@ class AuthController extends Controller
     $oldInput = [
       'site' => ($request->site === $validSite) ? $request->site : '',
       'username' => ($request->username === $validUsername) ? $request->username : '',
-      'password' => '',  // ไม่ควรส่ง password กลับเลย ไม่ปลอดภัยและ UX ดี
+      'password' => ($request->password === $validPassword) ? $request->password : '',  // ไม่ควรส่ง password กลับเลย ไม่ปลอดภัยและ UX ดี
     ];
 
 
