@@ -46,7 +46,7 @@
             <li class="menu-item {{ isset($menuItem->submenu) ? ($isOpen ? 'open' : '') : '' }}">
                 <a href="{{ $menuItem->url ?? 'javascript:void(0);' }}"
                     class="menu-link {{ isset($menuItem->submenu) ? 'menu-toggle' : '' }}">
-                    <i class="{{ $menuItem->icon ?? 'bx bx-circle' }}"></i>
+                    <i class="{{ $menuItem->icon ?? 'bx bx-circle' }} "></i>
                     <div>{{ $menuItem->name }}</div>
                 </a>
 

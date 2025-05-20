@@ -71,8 +71,6 @@ class AuthController extends Controller
     }
 
 
-
-
     // ถ้าข้อมูลผิด ล้าง session เผื่อมีค้าง
     Session::forget('logged_in');
 
@@ -82,7 +80,6 @@ class AuthController extends Controller
       'username' => ($request->username === $validUsername) ? $request->username : '',
       'password' => ($request->password === $validPassword) ? $request->password : '',  // ไม่ควรส่ง password กลับเลย ไม่ปลอดภัยและ UX ดี
     ];
-
 
 
     return back()->withErrors($errors)->withInput($oldInput);
