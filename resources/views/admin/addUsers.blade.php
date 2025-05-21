@@ -47,78 +47,8 @@
     <!-- $isFront is used to append the front layout styles only on the front layout otherwise the variable will be blank -->
     <!-- BEGIN: Theme CSS-->
     <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
-            rel="stylesheet">
 
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/remixicon-CB5Upr-_.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/flag-icons-Bor6250r.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-D5r9FyLK.css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/remixicon-CB5Upr-_.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/flag-icons-Bor6250r.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-D5r9FyLK.css"
-            class="" /><!-- Core CSS -->
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/core-BdqwDRjO.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/theme-default-fL703prY.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/demo-Z-YEgnIY.css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/core-BdqwDRjO.css"
-            class="template-customizer-core-css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/theme-default-fL703prY.css"
-            class="template-customizer-theme-css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/demo-Z-YEgnIY.css"
-            class="" />
-        <!-- Vendor Styles -->
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CTjXBMlg.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-rBaq-1fs.css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CTjXBMlg.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-rBaq-1fs.css"
-            class="" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-CM92vv1c.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/responsive-CnNKeydF.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/buttons-BMNqbP5L.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-ClaRyMzO.css" />
-        <link rel="preload" as="style"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/form-validation-Z40eMZE8.css" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-CM92vv1c.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/responsive-CnNKeydF.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/buttons-BMNqbP5L.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-ClaRyMzO.css"
-            class="" />
-        <link rel="stylesheet"
-            href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/form-validation-Z40eMZE8.css"
-            class="" />
-        <!-- Page Styles --> --}}
+    <!-- Page Styles -->
 
     <!-- Include Scripts for customizer, helper, analytics, config -->
     <!-- $isFront is used to append the front layout scriptsIncludes only on the front layout otherwise the variable will be blank -->
@@ -1025,10 +955,10 @@
                                     </div>
                                     <div class="col-7">
                                         <div class="card-body text-sm-end text-center ps-sm-0">
-                                            <button data-bs-target="#addRoleModal" data-bs-toggle="modal"
+                                            <button data-bs-target="#addUser" data-bs-toggle="modal"
                                                 class="btn btn-sm btn-primary mb-4 text-nowrap add-new-role">Add
-                                                New Position</button>
-                                            <p class="mb-0">Add position, if it does not exist</p>
+                                                New User</button>
+                                            <p class="mb-0">Add user, if it does not exist</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1406,7 +1336,118 @@
                     </div>
 
 
-                    <!--/ Add Role Modal -->
+                    <!--/ Add User Modal -->
+                    <div class="modal fade" id="addUser" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+                            <div class="modal-content">
+                                <div class="modal-body p-0">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <div class="text-center mb-6">
+                                        <h4 class="mb-2">Add User Information</h4>
+                                        <p class="mb-6">Adding a new user will receive a privacy audit.
+                                        </p>
+                                    </div>
+                                    <form id="addUserForm" class="row g-5" onsubmit="return false">
+                                        <div class="col-12">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserFirstName"
+                                                    name="modalEditUserFirstName" class="form-control" />
+                                                <label for="modalEditUserFirstName">TH Fullname</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserLastName"
+                                                    name="modalEditUserLastName" class="form-control" />
+                                                <label for="modalEditUserLastName">EN Fullname</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserLastName"
+                                                    name="modalEditUserLastName" class="form-control" />
+                                                <label for="modalEditUserLastName">Nickname</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserLastName"
+                                                    name="modalEditUserLastName" class="form-control" />
+                                                <label for="modalEditUserLastName">Position</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserName" name="modalEditUserName"
+                                                    class="form-control" />
+                                                <label for="modalEditUserName">Username</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserLastName"
+                                                    name="modalEditUserLastName" class="form-control" />
+                                                <label for="modalEditUserLastName">Password</label>
+                                            </div>
+                                        </div>
+
+
+
+                                        {{-- <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditUserEmail" name="modalEditUserEmail"
+                                                    class="form-control" />
+                                                <label for="modalEditUserEmail">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <select id="modalEditUserStatus" name="modalEditUserStatus"
+                                                    class="form-select" aria-label="Default select example">
+                                                    <option value="1" selected>Active</option>
+                                                    <option value="2">Inactive</option>
+                                                    <option value="3">Suspended</option>
+                                                </select>
+                                                <label for="modalEditUserStatus">Status</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="modalEditTaxID" name="modalEditTaxID"
+                                                    class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                                                <label for="modalEditTaxID">Tax ID</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text">US (+1)</span>
+                                                <div class="form-floating form-floating-outline">
+                                                    <input type="text" id="modalEditUserPhone"
+                                                        name="modalEditUserPhone" class="form-control phone-number-mask"
+                                                        value="+1 609 933 4422" placeholder="+1 609 933 4422" />
+                                                    <label for="modalEditUserPhone">Phone Number</label>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-primary me-3">Submit</button>
+                                            <button type="reset" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Add User Modal -->
+
+
+
+
+
+
                     <!-- Edit User Modal -->
                     <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-simple modal-edit-user">
