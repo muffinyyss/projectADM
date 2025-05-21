@@ -717,6 +717,10 @@
                     <h4 class="mb-1">Users List</h4>
                     <p class="mb-6">A position provided access to predefined menus and features so that depending
                         on assigned position an administrator can have access to what user needs.</p>
+
+
+
+
                     <!-- Role cards -->
                     <div class="row g-6">
                         <div class="col-xl-4 col-lg-6 col-md-6">
@@ -981,11 +985,41 @@
                                                 <th>Fullname</th>
                                                 <th>Username</th>
                                                 <th>Position</th>
-                                                <th>Plan</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                {{-- <th>Plan</th>
+                                                <th>Status</th> --}}
+                                                <th class="text-center">Actions</th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+
+                                            @foreach ($users as $user)
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $user['EN_fullname'] }}</td>
+                                                    <td>{{ $user['Username'] }}</td>
+                                                    <td>{{ $user['Position'] }}</td>
+                                                    {{-- <td></td>
+                                                    <td></td> --}}
+                                                    <td class="text-center">
+                                                        <!-- Delete icon -->
+                                                        <a href="#" class="me-2" title="Delete">
+                                                            <i class="ri-delete-bin-line ri-20px"></i>
+                                                        </a>
+
+                                                        <!-- View icon -->
+                                                        <a href="#" class="me-2" title="View">
+                                                            <i class="ri-eye-line ri-20px"></i>
+                                                        </a>
+
+                                                        <!-- More options (3 dots) -->
+                                                        <a href="#" title="More">
+                                                            <i class="ri-more-line ri-20px"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -996,7 +1030,7 @@
 
                     <!-- Modal -->
                     <!-- Add Role Modal -->
-                    <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+                    {{-- <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
                             <div class="modal-content">
                                 <div class="modal-body p-0">
@@ -1333,7 +1367,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                     <!--/ Add User Modal -->
@@ -1386,7 +1420,7 @@
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserLastName"
+                                                <input type="password" id="modalEditUserLastName"
                                                     name="modalEditUserLastName" class="form-control" />
                                                 <label for="modalEditUserLastName">Password</label>
                                             </div>
@@ -1522,65 +1556,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-12 col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <select id="modalEditUserLanguage" name="modalEditUserLanguage"
-                                                    class="select2 form-select" multiple>
-                                                    <option value="">Select</option>
-                                                    <option value="english" selected>English</option>
-                                                    <option value="spanish">Spanish</option>
-                                                    <option value="french">French</option>
-                                                    <option value="german">German</option>
-                                                    <option value="dutch">Dutch</option>
-                                                    <option value="hebrew">Hebrew</option>
-                                                    <option value="sanskrit">Sanskrit</option>
-                                                    <option value="hindi">Hindi</option>
-                                                </select>
-                                                <label for="modalEditUserLanguage">Language</label>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="col-12 col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <select id="modalEditUserCountry" name="modalEditUserCountry"
-                                                    class="select2 form-select" data-allow-clear="true">
-                                                    <option value="">Select</option>
-                                                    <option value="Australia">Australia</option>
-                                                    <option value="Bangladesh">Bangladesh</option>
-                                                    <option value="Belarus">Belarus</option>
-                                                    <option value="Brazil">Brazil</option>
-                                                    <option value="Canada">Canada</option>
-                                                    <option value="China">China</option>
-                                                    <option value="France">France</option>
-                                                    <option value="Germany">Germany</option>
-                                                    <option value="India" selected>India</option>
-                                                    <option value="Indonesia">Indonesia</option>
-                                                    <option value="Israel">Israel</option>
-                                                    <option value="Italy">Italy</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea, Republic of</option>
-                                                    <option value="Mexico">Mexico</option>
-                                                    <option value="Philippines">Philippines</option>
-                                                    <option value="Russia">Russian Federation</option>
-                                                    <option value="South Africa">South Africa</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Turkey">Turkey</option>
-                                                    <option value="Ukraine">Ukraine</option>
-                                                    <option value="United Arab Emirates">United Arab Emirates
-                                                    </option>
-                                                    <option value="United Kingdom">United Kingdom</option>
-                                                    <option value="United States">United States</option>
-                                                </select>
-                                                <label for="modalEditUserCountry">Country</label>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="col-12">
-                                            <div class="form-check form-switch">
-                                                <input type="checkbox" class="form-check-input"
-                                                    id="editBillingAddress" />
-                                                <label for="editBillingAddress" class="text-heading">Use as
-                                                    a billing address?</label>
-                                            </div>
-                                        </div> --}}
                                         <div class="col-12 text-center">
                                             <button type="submit" class="btn btn-primary me-3">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary"
@@ -1597,37 +1572,7 @@
                 </div>
                 <!-- / Content -->
 
-                <!-- Footer -->
-                <!-- Footer -->
-                {{-- <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl">
-                            <div
-                                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                                <div class="text-body mb-2 mb-md-0">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>,
-                                    made with <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
-                                    by
-                                    <a href="https://themeselection.com" target="_blank"
-                                        class="footer-link">ThemeSelection</a>
-                                </div>
-                                <div class="d-none d-lg-inline-block">
-                                    <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                        target="_blank">License</a>
-                                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                        Themes</a>
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/laravel-introduction.html"
-                                        target="_blank" class="footer-link me-4">Documentation</a>
-                                    <a href="https://themeselection.com/support/" target="_blank"
-                                        class="footer-link d-none d-sm-inline-block">Support</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer> --}}
-                <!--/ Footer -->
-                <!-- / Footer -->
+
                 {{-- <div class="content-backdrop fade"></div> --}}
             </div>
             <!--/ Content wrapper -->

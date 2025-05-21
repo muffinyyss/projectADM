@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -55,9 +56,7 @@ Route::get('/home', function () {
   return view('home.home'); // หรือใช้ Controller ถ้ามี
 })->name('home');
 
-Route::get('/addusers', function () {
-  return view('admin.addUsers'); // หรือใช้ Controller ถ้ามี
-})->name('addUsers');
+Route::get('/addusers', [UsersController::class, 'index'])->name('addUsers');
 
 
 
