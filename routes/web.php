@@ -55,7 +55,9 @@ Route::get('/home', function () {
   return view('home.home'); // หรือใช้ Controller ถ้ามี
 })->name('home');
 
-
+Route::get('/addusers', function () {
+  return view('admin.addUsers'); // หรือใช้ Controller ถ้ามี
+})->name('addUsers');
 
 
 

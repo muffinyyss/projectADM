@@ -58,26 +58,43 @@
       ]
     },
     {
+      "name": "Admin",
+      "icon": "menu-icon tf-icons bi bi-person-add",
+      "position": [
+        "Admin"
+      ],
+      "submenu": [
+        {
+          "name": "Add user",
+          "slug": "",
+          "url": "/addusers",
+          "position": [
+            "Admin"
+          ]
+        }
+      ]
+    },
+    {
       "name": "Sale",
       "icon": "menu-icon tf-icons bx bx-dollar",
-      "roles": [
-        "sale"
+      "position": [
+        "Sales Representative"
       ],
       "submenu": [
         {
           "name": "Sale Report",
           "slug": "",
           "url": "#",
-          "roles": [
-            "sale"
+          "position": [
+            "Sales Representative"
           ]
         },
         {
           "name": "Sale Summary",
           "slug": "",
           "url": "#",
-          "roles": [
-            "sale"
+          "position": [
+            "Sales Representative"
           ]
         }
       ]

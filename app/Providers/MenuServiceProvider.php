@@ -28,19 +28,19 @@ class MenuServiceProvider extends ServiceProvider
       $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
       $verticalMenuData = json_decode($verticalMenuJson, true); // เปลี่ยนตรงนี้
 
-      $userRole = Session::get('roles', 'guest');
+      $userRole = Session::get('position', 'guest');
 
       $menuList = $verticalMenuData['menu'] ?? []; // ป้องกัน error ถ้าไม่มี key menu
 
-      // ✅ กรองเฉพาะเมนูที่ตรงกับ roles เท่านั้น
+      // ✅ กรองเฉพาะเมนูที่ตรงกับ position เท่านั้น
       $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
-        // ต้องมี key 'roles' และ userRole ต้องอยู่ใน array นั้น
-        return isset($item['roles']) && in_array($userRole, $item['roles']);
+        // ต้องมี key 'position' และ userRole ต้องอยู่ใน array นั้น
+        return isset($item['position']) && in_array($userRole, $item['position']);
       })->map(function ($item) use ($userRole) {
-        // กรอง submenu เฉพาะที่มี roles ตรงกันเท่านั้น
+        // กรอง submenu เฉพาะที่มี position ตรงกันเท่านั้น
         if (isset($item['submenu'])) {
           $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
-            return isset($sub['roles']) && in_array($userRole, $sub['roles']);
+            return isset($sub['position']) && in_array($userRole, $sub['position']);
           })->values()->all();
         }
         return $item;
@@ -53,28 +53,28 @@ class MenuServiceProvider extends ServiceProvider
   }
 
 
-  private function filterMenuByRole($menuItems, $roles)
+  private function filterMenuByRole($menuItems, $position)
   {
     $filtered = [];
 
     foreach ($menuItems as $item) {
-      // ตรวจสอบ roles
-      if (isset($item->roles)) {
-        if (in_array($roles, $item->roles)) {
+      // ตรวจสอบ position
+      if (isset($item->position)) {
+        if (in_array($position, $item->position)) {
           // debug
-          // \Log::info("Include menu: " . $item->name . " for role: " . $roles);
+          // \Log::info("Include menu: " . $item->name . " for role: " . $position);
           // ถ้ามี submenu ให้กรองซ้ำและแปลงเป็น object
           if (isset($item->submenu)) {
-            $item->submenu = $this->filterMenuByRole($item->submenu, $roles);
+            $item->submenu = $this->filterMenuByRole($item->submenu, $position);
             // แปลงเป็น object
             $item->submenu = json_decode(json_encode($item->submenu));
           }
           $filtered[] = $item;
         }
       } else {
-        // ถ้าไม่มี roles กำกับ ให้แสดงเมนูนี้
+        // ถ้าไม่มี position กำกับ ให้แสดงเมนูนี้
         if (isset($item->submenu)) {
-          $item->submenu = $this->filterMenuByRole($item->submenu, $roles);
+          $item->submenu = $this->filterMenuByRole($item->submenu, $position);
           $item->submenu = json_decode(json_encode($item->submenu));
         }
         $filtered[] = $item;

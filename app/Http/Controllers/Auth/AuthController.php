@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -95,13 +96,23 @@ class AuthController extends Controller
 
   public function login(Request $request)
   {
+    // ตรวจสอบความถูกต้องของ input
+    $request->validate([
+      'site' => 'required|string',
+      'username' => 'required|string',
+      'password' => 'required|string',
+    ]);
+
+    $errors = [];
 
     // ค้นหาผู้ใช้จากฐานข้อมูล
     $user = User::where('Username', $request->username)
       ->where('Site', $request->site)
       ->first();
+
     if ($user) {
-      if ($request->password === $user->Password) { // หรือใช้ Hash::check ถ้าเข้ารหัส
+      // ใช้ Hash::check เปรียบเทียบ password กับค่าที่เข้ารหัสใน DB
+      if ($request->password === $user->Password) {
         Session::put('logged_in', true);
         Session::put('site', $user->Site);
         Session::put('username', $user->Username);
@@ -116,16 +127,22 @@ class AuthController extends Controller
         $errors['password'] = 'Password ไม่ถูกต้อง';
       }
     } else {
-      $errors['username'] = 'Site หรือ Username ไม่ถูกต้อง';
+      // แยก error ออกเป็น site หรือ username ไม่ถูกต้องแบบละเอียด
+      $siteExists = User::where('Site', $request->site)->exists();
+      if (!$siteExists) {
+        $errors['site'] = 'Site ไม่ถูกต้อง';
+      } else {
+        $errors['username'] = 'Username ไม่ถูกต้อง';
+      }
     }
 
+    // ล้าง session เผื่อมีค้าง
     Session::forget('logged_in');
 
     return back()->withErrors($errors)->withInput([
       'site' => $request->site,
       'username' => $request->username,
     ]);
-
   }
 
   // ฟังก์ชันการ Logout

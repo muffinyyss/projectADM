@@ -25,12 +25,16 @@ class AuthServiceProvider extends ServiceProvider
 
     Gate::define('view-sale-menu', function () {
       $site = session('site');
-      $role = session('role');
-      return $site === 'esm' && $role === 'sale';
+      $position = session('position');
+      $allowedPositions = ['Sales Representative', 'Senior Sales']; // เพิ่มตำแหน่งที่อนุญาต
+
+      return $site === 'spcg' && in_array($position, $allowedPositions);
     });
 
     Gate::define('view-admin-menu', function () {
-      return session('role') === 'admin';
+      return session('position') === 'Admin';
     });
+
+
   }
 }
