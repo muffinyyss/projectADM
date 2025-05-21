@@ -23,35 +23,35 @@ class AuthServiceProvider extends ServiceProvider
   {
     $this->registerPolicies();
 
-    // Gate::define('view-sale-menu', function () {
-    //   $site = session('site');
-    //   $position = session('position');
-    //   $allowedPositions = ['Sales Representative', 'Senior Sales']; // เพิ่มตำแหน่งที่อนุญาต
-
-    //   return $site === 'spcg' && in_array($position, $allowedPositions);
-    // });
-
-    // Gate::define('view-admin-menu', function () {
-    //   return session('position') === 'Admin';
-    // });
-
     Gate::define('view-sale-menu', function () {
       $site = session('site');
       $position = session('position');
+      $allowedPositions = ['Sales Representative', 'Senior Sales', 'Admin']; // เพิ่มตำแหน่งที่อนุญาต
 
-      $allowedPositions = ['Sales Representative', 'Senior Sales', 'Admin'];
-      // รองรับทั้ง string และ array
-      $positions = is_string($position) ? explode(',', $position) : (array) $position;
-
-      return $site === 'spcg' && collect($positions)->intersect($allowedPositions)->isNotEmpty();
+      return $site === 'spcg' && in_array($position, $allowedPositions);
     });
 
     Gate::define('view-admin-menu', function () {
-      $position = session('position');
-      $positions = is_string($position) ? explode(',', $position) : (array) $position;
-
-      return in_array('Admin', $positions);
+      return session('position') === 'Admin';
     });
+
+    // Gate::define('view-sale-menu', function () {
+    //   $site = session('site');
+    //   $position = session('position');
+
+    //   $allowedPositions = ['Sales Representative', 'Senior Sales', 'Admin'];
+    //   // รองรับทั้ง string และ array
+    //   $positions = is_string($position) ? explode(',', $position) : (array) $position;
+
+    //   return $site === 'spcg' && collect($positions)->intersect($allowedPositions)->isNotEmpty();
+    // });
+
+    // Gate::define('view-admin-menu', function () {
+    //   $position = session('position');
+    //   $positions = is_string($position) ? explode(',', $position) : (array) $position;
+
+    //   return in_array('Admin', $positions);
+    // });
 
 
 
