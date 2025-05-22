@@ -45,14 +45,14 @@
 
                         <form id="formAuthentication" class="mb-5" action="{{ route('login.perform') }}" method="POST">
                             @csrf
-                            <div class="form-floating mb-3">
+                            <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control @error('site') is-invalid @enderror"
                                     id="site" name="site" value="{{ old('site') }}" placeholder="Enter your site"
                                     autofocus required />
                                 <label for="site">Site name</label>
                             </div>
 
-                            <div class="form-floating mb-3">
+                            <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" value="{{ old(key: 'username') }}"
                                     placeholder="Enter your username" autofocus required />
@@ -66,22 +66,28 @@
                                             {{-- @error('password')
                                                 <div class="text-danger mb-1">{{ $message }}</div>
                                             @enderror --}}
-                                            <input type="password" id="password"
+                                            {{-- <input type="password" id="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 value="{{ old('password') }}"
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                                 aria-describedby="password" required />
-                                            <label for="password">Password</label>
-                                        </div>
-                                        <span
-                                            class="input-group-text cursor-pointer @error('password') btn btn-outline-danger @enderror">
-                                            <i class="ri-eye-off-line ri-20px"></i>
-                                        </span>
-                                        {{-- <span class="input-group-text cursor-pointer"
-                                            style="@error('password') color:#dc3545 @enderror">
-                                            <i class="ri-eye-off-line ri-20px"></i>
-                                        </span> --}}
+                                            <label for="password">Password</label> --}}
 
+                                            <div class="form-password-toggle mb-5">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        <input type="password"
+                                                            class="form-control @error('password') is-invalid @enderror"
+                                                            name="password" value="{{ old('password') }}" id="password"
+                                                            placeholder="············"
+                                                            aria-describedby="basic-default-password12">
+                                                        <label for="password">Password</label>
+                                                    </div>
+                                                    <span class="input-group-text cursor-pointer"><i
+                                                            class="ri-eye-off-line ri-20px"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

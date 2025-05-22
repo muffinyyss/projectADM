@@ -437,53 +437,103 @@
                                         <p class="mb-6">Adding a new user will receive a privacy audit.
                                         </p>
                                     </div>
-                                    <form id="addUserForm" class="row g-5" onsubmit="return false" method="GET"
-                                        action="{{ route('users.create') }}">
+                                    <form id="addUserForm" class="row g-5" method="POST"
+                                        action="{{ route('users.store') }}">
                                         @csrf
 
-                                        <div class="col-12">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserFirstName"
-                                                    name="modalEditUserFirstName" class="form-control" />
-                                                <label for="modalEditUserFirstName">TH Fullname</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserLastName"
-                                                    name="modalEditUserLastName" class="form-control" />
-                                                <label for="modalEditUserLastName">EN Fullname</label>
-                                            </div>
-                                        </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserLastName"
-                                                    name="modalEditUserLastName" class="form-control" />
-                                                <label for="modalEditUserLastName">Nickname</label>
+                                                <input type="text" id="site" name="Site" class="form-control"
+                                                    required />
+                                                <label for="site">Site</label>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserLastName"
-                                                    name="modalEditUserLastName" class="form-control" />
-                                                <label for="modalEditUserLastName">Position</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="text" id="modalEditUserName" name="modalEditUserName"
-                                                    class="form-control" />
-                                                <label for="modalEditUserName">Username</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="password" id="modalEditUserLastName"
-                                                    name="modalEditUserLastName" class="form-control" />
-                                                <label for="modalEditUserLastName">Password</label>
-                                            </div>
+                                            @error('Site')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="branch" name="Branch" class="form-control"
+                                                    required />
+                                                <label for="branch">Branch</label>
+                                            </div>
+                                            @error('Branch')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="th_fullname" name="TH_fullname"
+                                                    class="form-control" required />
+                                                <label for="th_fullname">TH Fullname</label>
+                                            </div>
+                                            @error('TH_fullname')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="en_fullname" name="EN_fullname"
+                                                    class="form-control" required />
+                                                <label for="en_fullname">EN Fullname</label>
+                                            </div>
+                                            @error('EN_fullname')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="nickname" name="Nickname"
+                                                    class="form-control" required />
+                                                <label for="nickname">Nickname</label>
+                                            </div>
+                                            @error('Nickname')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="position" name="Position"
+                                                    class="form-control" required />
+                                                <label for="position">Position</label>
+                                            </div>
+                                            @error('Position')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="username" name="Username"
+                                                    class="form-control" required />
+                                                <label for="username">Username</label>
+                                            </div>
+                                            @error('Username')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-password-toggle mb-5">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        <input type="password" class="form-control" id="password"
+                                                            name="Password" placeholder="············" required />
+                                                        <label for="password">Password</label>
+                                                    </div>
+                                                    <span class="input-group-text cursor-pointer"><i
+                                                            class="ri-eye-off-line ri-20px"></i></span>
+                                                </div>
+                                                @error('Password')
+                                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
 
                                         <div class="col-12 text-center">
                                             <button type="submit" class="btn btn-primary me-3">Submit</button>

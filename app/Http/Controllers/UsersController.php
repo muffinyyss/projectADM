@@ -37,33 +37,70 @@ class UsersController extends Controller
     return view('admin.addUsers', compact('users'));
   }
 
-  public function create(Request $request)
+  public function store(Request $request)
   {
     $request->validate([
-      'site' => 'nullable|string',
-      'branch' => 'nullable|string',
-      'th_fullname' => 'required|string',
-      'en_fullname' => 'required|string',
-      'nickname' => 'nullable|string',
-      'position' => 'nullable|string',
-      'username' => 'required|string|unique:users,Username',
-      'password' => 'required|string|min:6',
+      'Site' => 'required|string|max:20',
+      'TH_fullname' => 'required|string|max:100',
+      'EN_fullname' => 'required|string|max:100',
+      'Nickname' => 'nullable|string|max:100',
+      'Username' => 'required|string|max:100|unique:users',
+      'Password' => 'required|string|min:6|max:20',
+      'Position' => 'nullable|string|max:100',
+      'Branch' => 'nullable|string',
     ]);
-
 
     User::create([
-      'Site' => $request->input('site'),
-      'TH_fullname' => $request->input('th_fullname'),
-      'EN_fullname' => $request->input('en_fullname'),
-      'Nickname' => $request->input('nickname'),
-      'Username' => $request->input('username'),
-      'Password' => bcrypt($request->input('password')),
-      'Position' => $request->input('position'),
-      'Branch' => $request->input('branch'),
+      'Site' => $request->Site,
+      'TH_fullname' => $request->TH_fullname,
+      'EN_fullname' => $request->EN_fullname,
+      'Nickname' => $request->Nickname,
+      'Username' => $request->Username,
+      'Password' => bcrypt($request->Password), // เข้ารหัสรหัสผ่าน
+      'Position' => $request->Position,
+      'Branch' => $request->Branch,
     ]);
+
+    // ตรวจสอบข้อมูลที่ถูก validate แล้ว
+    // dd($request);
+    // User::create([
+    //   'Site' => $request->input('site'),
+    //   'TH_fullname' => $request->input('th_fullname'),
+    //   'EN_fullname' => $request->input('en_fullname'),
+    //   'Nickname' => $request->input('nickname'),
+    //   'Username' => $request->input('username'),
+    //   'Password' => bcrypt($request->input('password')),
+    //   'Position' => $request->input('position'),
+    //   'Branch' => $request->input('branch'),
+    // ]);
 
 
     return redirect()->route('addUsers')->with('success', 'User added successfully.');
   }
+
+  // public function update(Request $request, User $user)
+  // {
+  //   $request->validate([
+  //     'Site' => 'required|string|max:20',
+  //     'TH_fullname' => 'required|string|max:100',
+  //     'EN_fullname' => 'required|string|max:100',
+  //     'Nickname' => 'nullable|string|max:100',
+  //     'Username' => 'required|string|max:100|unique:users,Username,' . $user->id,
+  //     'Password' => 'nullable|string|min:6|max:20',
+  //     'Position' => 'nullable|string|max:100',
+  //     'Branch' => 'nullable|string',
+  //   ]);
+
+  //   $data = $request->only(['Site', 'TH_fullname', 'EN_fullname', 'Nickname', 'Username', 'Position', 'Branch']);
+
+  //   if ($request->filled('Password')) {
+  //     $data['Password'] = bcrypt($request->Password);
+  //   }
+
+  //   $user->update($data);
+
+  //   return redirect()->route('users.index')->with('success', 'User updated successfully.');
+  // }
+
 
 }
