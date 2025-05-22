@@ -120,13 +120,14 @@ class UsersController extends Controller
     $user->EN_fullname = $request->EN_fullname;
     $user->Nickname = $request->Nickname;
     $user->Username = $request->Username;
-    $user->Password = $request->Password;
     $user->Position = $request->Position;
     $user->Branch = $request->Branch;
 
-    // if ($request->Password) {
-    //   $user->Password = bcrypt($request->Password);
-    // }
+    if ($request->Password) {
+      // $user->Password = bcrypt($request->Password);
+      $user->Password = $request->Password;
+
+    }
 
     $user->save();
 
