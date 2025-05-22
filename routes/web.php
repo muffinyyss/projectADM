@@ -59,6 +59,8 @@ Route::get('/home', function () {
 //Admin menu
 Route::get('/addusers', [UsersController::class, 'index'])->name('addUsers');
 Route::post('/users/store', [UsersController::class, 'store'])->name('users.store'); // แสดงฟอร์ม
+Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+
 // Route::post('/users/store', [UsersController::class, 'store'])->name('users.store'); // บันทึกข้อมูล
 
 

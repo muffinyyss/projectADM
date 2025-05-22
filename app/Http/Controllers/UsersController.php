@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -20,7 +21,7 @@ class UsersController extends Controller
     $page = $request->input('page', 1); // หน้าปัจจุบัน
 
     // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
-    $rawUsers = User::all()->map(function ($user) {
+    $rawUsers = Users::all()->map(function ($user) {
       return $user->toArray(); // แปลง Model เป็น array
     });
 
@@ -39,24 +40,27 @@ class UsersController extends Controller
 
   public function store(Request $request)
   {
+    // dd($request->all()); // ทดสอบก่อน
+
     $request->validate([
       'Site' => 'required|string|max:20',
       'TH_fullname' => 'required|string|max:100',
       'EN_fullname' => 'required|string|max:100',
       'Nickname' => 'nullable|string|max:100',
-      'Username' => 'required|string|max:100|unique:users',
+      'Username' => 'required|string|max:100|unique:users,Username', // แก้ให้ validate เฉพาะ column Username,
       'Password' => 'required|string|min:6|max:20',
       'Position' => 'nullable|string|max:100',
       'Branch' => 'nullable|string',
     ]);
 
-    User::create([
+    Users::create([
       'Site' => $request->Site,
       'TH_fullname' => $request->TH_fullname,
       'EN_fullname' => $request->EN_fullname,
       'Nickname' => $request->Nickname,
       'Username' => $request->Username,
-      'Password' => bcrypt($request->Password), // เข้ารหัสรหัสผ่าน
+      // 'Password' => bcrypt($request->Password), // เข้ารหัสรหัสผ่าน
+      'Password' => $request->Password, // เข้ารหัสรหัสผ่าน
       'Position' => $request->Position,
       'Branch' => $request->Branch,
     ]);
@@ -77,6 +81,15 @@ class UsersController extends Controller
 
     return redirect()->route('addUsers')->with('success', 'User added successfully.');
   }
+
+  public function destroy($id)
+  {
+    $user = Users::findOrFail($id);
+    $user->delete();
+
+    return redirect()->route('addUsers')->with('success', 'User deleted successfully.');
+  }
+
 
   // public function update(Request $request, User $user)
   // {

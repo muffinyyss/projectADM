@@ -393,9 +393,16 @@
                                                     <td></td> --}}
                                                     <td class="text-center">
                                                         <!-- Delete icon -->
-                                                        <a href="#" class="me-2" title="Delete">
-                                                            <i class="ri-delete-bin-line ri-20px"></i>
-                                                        </a>
+                                                        <form action="{{ route('users.destroy', $user['ID']) }}"
+                                                            method="POST" style="display:inline;"
+                                                            onsubmit="return confirm('Are you sure to delete this user?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" title="Delete"
+                                                                style="border:none; background:none; padding:0; cursor:pointer; color: #dc3545;">
+                                                                <i class="ri-delete-bin-line ri-20px me-2"></i>
+                                                            </button>
+                                                        </form>
 
                                                         <!-- View icon -->
                                                         <a href="#" class="me-2" title="View">
@@ -765,3 +772,12 @@
     {{-- </html> --}}
 
 @endsection
+
+{{-- @section('page-script')
+    <script>
+        document.getElementById("addUserForm").addEventListener("submit", function(e) {
+            alert("Form Submitted"); // ควรขึ้น alert ถ้า form ทำงาน
+        });
+    </script>
+
+@endsection --}}
