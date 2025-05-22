@@ -61,7 +61,12 @@ Route::get('/addusers', [UsersController::class, 'index'])->name('addUsers');
 Route::post('/users/store', [UsersController::class, 'store'])->name('users.store'); // แสดงฟอร์ม
 Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
 
-// Route::post('/users/store', [UsersController::class, 'store'])->name('users.store'); // บันทึกข้อมูล
+// แสดงฟอร์มแก้ไขข้อมูล
+Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.edit');
+
+// อัปเดตข้อมูล (ส่งข้อมูลแก้ไข)
+Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
+
 
 
 

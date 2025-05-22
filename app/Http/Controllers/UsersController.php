@@ -91,29 +91,48 @@ class UsersController extends Controller
   }
 
 
-  // public function update(Request $request, User $user)
-  // {
-  //   $request->validate([
-  //     'Site' => 'required|string|max:20',
-  //     'TH_fullname' => 'required|string|max:100',
-  //     'EN_fullname' => 'required|string|max:100',
-  //     'Nickname' => 'nullable|string|max:100',
-  //     'Username' => 'required|string|max:100|unique:users,Username,' . $user->id,
-  //     'Password' => 'nullable|string|min:6|max:20',
-  //     'Position' => 'nullable|string|max:100',
-  //     'Branch' => 'nullable|string',
-  //   ]);
+  // ฟังก์ชันแสดงฟอร์มแก้ไข
+  public function edit($id)
+  {
+    $user = Users::findOrFail($id);
+    return view('admin.editUsers', compact('user')); // เปลี่ยนชื่อ view ตามโฟลเดอร์ที่คุณใช้จริง
+  }
 
-  //   $data = $request->only(['Site', 'TH_fullname', 'EN_fullname', 'Nickname', 'Username', 'Position', 'Branch']);
 
-  //   if ($request->filled('Password')) {
-  //     $data['Password'] = bcrypt($request->Password);
-  //   }
+  // ฟังก์ชันอัปเดตข้อมูล
+  public function update(Request $request, $id)
+  {
+    $request->validate([
+      'Site' => 'required|string|max:20',
+      'TH_fullname' => 'required|string|max:100',
+      'EN_fullname' => 'required|string|max:100',
+      'Nickname' => 'nullable|string|max:100',
+      'Username' => 'required|string|max:100|unique:users,Username,' . $id . ',ID', // ยกเว้นตัวเอง
+      'Password' => 'nullable|string|min:6|max:20', // ถ้าไม่แก้รหัสผ่าน ไม่ต้องกรอก
+      'Position' => 'nullable|string|max:100',
+      'Branch' => 'nullable|string',
+    ]);
 
-  //   $user->update($data);
+    $user = Users::findOrFail($id);
 
-  //   return redirect()->route('users.index')->with('success', 'User updated successfully.');
-  // }
+    $user->Site = $request->Site;
+    $user->TH_fullname = $request->TH_fullname;
+    $user->EN_fullname = $request->EN_fullname;
+    $user->Nickname = $request->Nickname;
+    $user->Username = $request->Username;
+    $user->Password = $request->Password;
+    $user->Position = $request->Position;
+    $user->Branch = $request->Branch;
+
+    // if ($request->Password) {
+    //   $user->Password = bcrypt($request->Password);
+    // }
+
+    $user->save();
+
+    return redirect()->route('addUsers')->with('success', 'User updated successfully.');
+  }
+
 
 
 }

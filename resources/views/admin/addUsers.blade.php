@@ -405,14 +405,15 @@
                                                         </form>
 
                                                         <!-- View icon -->
-                                                        <a href="#" class="me-2" title="View">
+                                                        {{-- <a href="#" class="me-2" title="View">
                                                             <i class="ri-eye-line ri-20px"></i>
+                                                        </a> --}}
+
+                                                        <!-- Edit icon -->
+                                                        <a href="{{ route('users.edit', $user['ID']) }}" title="Edit">
+                                                            <i class="ri-pencil-line ri-20px"></i>
                                                         </a>
 
-                                                        <!-- More options (3 dots) -->
-                                                        <a href="#" title="More">
-                                                            <i class="ri-more-line ri-20px"></i>
-                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
