@@ -56,8 +56,10 @@ Route::get('/home', function () {
   return view('home.home'); // หรือใช้ Controller ถ้ามี
 })->name('home');
 
+//Admin menu
 Route::get('/addusers', [UsersController::class, 'index'])->name('addUsers');
-
+Route::get('/users/create', [UsersController::class, 'create'])->name('users.create'); // แสดงฟอร์ม
+// Route::post('/users/store', [UsersController::class, 'store'])->name('users.store'); // บันทึกข้อมูล
 
 
 
