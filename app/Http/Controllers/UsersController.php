@@ -7,63 +7,65 @@ use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Response; // ด้านบนไฟล์
 
 class UsersController extends Controller
 {
-  // public function index(Request $request)
-  // {
-  //   $perPage = 30; // จำนวนต่อหน้า
-  //   $page = $request->input('page', 1); // หน้าปัจจุบัน
-
-  //   // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
-  //   $rawUsers = Users::all()->map(function ($user) {
-  //     return $user->toArray(); // แปลง Model เป็น array
-
-  //   });
-
-  //   // ทำ pagination จาก Collection ที่เป็น array แล้ว
-  //   $users = new LengthAwarePaginator(
-  //     $rawUsers->forPage($page, $perPage), // ข้อมูลที่จะแสดงในหน้านั้น
-  //     $rawUsers->count(), // จำนวนทั้งหมด
-  //     $perPage, // ต่อหน้า
-  //     $page,
-  //     ['path' => request()->url(), 'query' => request()->query()] // ให้ pagination ทำงานได้ถูกต้อง
-  //   );
-
-  //   // dd($users);
-  //   return view('admin.addUsers', compact('users'));
-  // }
-
   public function index(Request $request)
   {
-    $perPage = 30;
-    $page = $request->input('page', 1);
-    $search = $request->input('search');
+    $perPage = 30; // จำนวนต่อหน้า
+    $page = $request->input('page', 1); // หน้าปัจจุบัน
 
-    // ดึงผู้ใช้ทั้งหมด
-    $rawUsers = Users::all()
-      ->filter(function ($user) use ($search) {
-        if (!$search)
-          return true; // ถ้าไม่ได้ค้นหา ก็คืนทุกคน
-  
-        // ค้นหาเฉพาะชื่อ (หรือจะใส่เงื่อนไขเพิ่มได้)
-        return str_contains(strtolower($user->name), strtolower($search));
-      })
-      ->map(function ($user) {
-        return $user->toArray();
-      });
+    // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
+    $rawUsers = Users::all()->map(function ($user) {
+      return $user->toArray(); // แปลง Model เป็น array
 
+    });
+
+    // ทำ pagination จาก Collection ที่เป็น array แล้ว
     $users = new LengthAwarePaginator(
-      $rawUsers->forPage($page, $perPage),
-      $rawUsers->count(),
-      $perPage,
+      $rawUsers->forPage($page, $perPage), // ข้อมูลที่จะแสดงในหน้านั้น
+      $rawUsers->count(), // จำนวนทั้งหมด
+      $perPage, // ต่อหน้า
       $page,
-      ['path' => request()->url(), 'query' => request()->query()]
+      ['path' => request()->url(), 'query' => request()->query()] // ให้ pagination ทำงานได้ถูกต้อง
     );
 
+    // dd($users);
     return view('admin.addUsers', compact('users'));
   }
 
+  // public function index(Request $request)
+  // {
+  //   $perPage = 30;
+  //   $page = $request->input('page', 1);
+  //   $search = $request->input('search');
+
+  //   // ดึงผู้ใช้ทั้งหมด
+  //   $rawUsers = Users::all()->map(function ($user) {
+  //     return $user->toArray();
+  //   });
+
+  //   // กรองตามคำค้น
+  //   if ($search) {
+  //     $rawUsers = $rawUsers->filter(function ($user) use ($search) {
+  //       return stripos($user['name'], $search) !== false || stripos($user['username'], $search) !== false || stripos($user['position'], $search) !== false;
+  //     })->values(); // รีเซ็ต index
+  //   }
+
+  //   // paginate จาก collection
+  //   $currentPageItems = $rawUsers->slice(($page - 1) * $perPage, $perPage)->values();
+
+  //   $users = new LengthAwarePaginator(
+  //     $currentPageItems,
+  //     $rawUsers->count(),
+  //     $perPage,
+  //     $page,
+  //     ['path' => $request->url(), 'query' => $request->query()]
+  //   );
+
+  //   return view('admin.addUsers', compact('users', 'search'));
+  // }
 
   public function store(Request $request)
   {
@@ -160,6 +162,53 @@ class UsersController extends Controller
 
     return redirect()->route('addUsers')->with('success', 'User updated successfully.');
   }
+
+
+  // public function search(Request $request)
+  // {
+  //   $search = $request->input('search');
+
+  //   $query = Users::query();
+
+  //   if ($search) {
+  //     $query->where(function ($q) use ($search) {
+  //       $q->where('EN_fullname', 'LIKE', "%{$search}%")
+  //         ->orWhere('Username', 'LIKE', "%{$search}%")
+  //         ->orWhere('Position', 'LIKE', "%{$search}%");
+  //     });
+  //   }
+
+  //   $users = $query->orderBy('ID', 'desc')->limit(30)->get();
+
+  //   return response()->json($users);
+  // }
+
+  // public function search(Request $request)
+  // {
+  //   $search = $request->input('search');
+
+  //   $query = Users::query();
+
+  //   if ($search) {
+  //     $query->where(function ($q) use ($search) {
+  //       $q->where('EN_fullname', 'LIKE', "%{$search}%")
+  //         ->orWhere('Username', 'LIKE', "%{$search}%")
+  //         ->orWhere('Position', 'LIKE', "%{$search}%");
+  //     });
+  //   }
+
+  //   $users = $query->orderBy('ID', 'desc')->limit(30)->get();
+  //   // แปลงเป็น array ก่อนส่งไป view
+  //   $usersArray = $users->toArray();
+  //   // dd($users->toArray());
+  //   // return redirect()->route('addUsers'), ['users' => $users]);
+  //   // return redirect()->route('addUsers')->with('users', $users);
+  //   return view('admin.addUsers', ['users' => $usersArray]);
+
+
+  // }
+
+
 
 
 

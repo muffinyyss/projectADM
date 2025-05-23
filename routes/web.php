@@ -67,6 +67,9 @@ Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.ed
 // อัปเดตข้อมูล (ส่งข้อมูลแก้ไข)
 Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
 
+// Route::get('/users/search', [UsersController::class, 'search'])->name('users.search');
+
+
 
 
 

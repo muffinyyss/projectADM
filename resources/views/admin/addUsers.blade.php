@@ -93,14 +93,24 @@
                                             <div
                                                 class="d-flex align-items-center justify-content-md-end justify-content-center">
 
-                                                {{-- <div class="me-4">
+                                                <div class="me-4">
                                                     <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                         <label><input type="search" class="form-control form-control-sm"
                                                                 placeholder="Search User"
                                                                 aria-controls="DataTables_Table_0"></label>
                                                     </div>
+                                                </div>
+                                                {{-- <div class="me-4">
+                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                        <label>
+                                                            <input type="search" id="searchInput"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Search User">
+                                                        </label>
+                                                    </div>
                                                 </div> --}}
 
+                                                {{--
                                                 <form method="GET" action="{{ route('addUsers') }}">
                                                     <div class="me-4">
                                                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
@@ -113,7 +123,18 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </form> --}}
+
+                                                {{-- <form method="GET" action="{{ route('addUsers') }}">
+                                                    <div class="input-group">
+                                                        <input type="search" name="search"
+                                                            class="form-control form-control-sm" placeholder="Search User"
+                                                            value="{{ request('search') }}">
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-sm">Search</button>
+                                                    </div>
+                                                </form> --}}
+
 
 
                                                 <div class="add-new">
@@ -157,6 +178,7 @@
                                                     {{-- <td></td>
                                                     <td></td> --}}
                                                     <td class="text-center">
+
                                                         <!-- Delete icon -->
                                                         <form action="{{ route('users.destroy', $user['ID']) }}"
                                                             method="POST" style="display:inline;"
@@ -175,10 +197,6 @@
                                                         </a> --}}
 
                                                         <!-- Edit icon -->
-                                                        {{-- <a href="{{ route('users.edit', $user['ID']) }}" title="Edit">
-                                                            <i class="ri-pencil-line ri-20px"></i>
-                                                        </a> --}}
-
                                                         <a href="{{ route('users.edit', ['id' => $user['ID'], 'page' => request()->page]) }}"
                                                             title="Edit">
                                                             <i class="ri-pencil-line ri-20px"></i>
@@ -545,11 +563,19 @@
 
 @endsection
 
-{{-- @section('page-script')
+@section('page-script')
     <script>
-        document.getElementById("addUserForm").addEventListener("submit", function(e) {
-            alert("Form Submitted"); // ควรขึ้น alert ถ้า form ทำงาน
+        const searchInput = document.querySelector('input[name="search"]');
+        let timer = null;
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                this.form.submit();
+            }, 500); // รอ 0.5 วินาทีหลังพิมพ์ถึงจะ submit
         });
     </script>
 
-@endsection --}}
+
+
+@endsection
