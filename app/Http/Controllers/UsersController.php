@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
   public function index(Request $request)
   {
-    $perPage = 30; // จำนวนต่อหน้า
+    $perPage = 25; // จำนวนต่อหน้า
     $page = $request->input('page', 1); // หน้าปัจจุบัน
 
     // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
