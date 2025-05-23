@@ -1,6 +1,6 @@
 @extends('layouts.contentNavbarLayout')
 
-@section('title', 'Add users')
+@section('title', 'Edit users')
 
 @section('vendor-style')
     @vite('resources/assets/vendor/libs/apex-charts/apex-charts.scss')
@@ -25,7 +25,7 @@
                     @csrf
                     @method('PUT')
 
-                    <div class="mb-3">
+                    <div class="mb-3 mt-5">
                         <label for="Site" class="form-label">Site</label>
                         <input type="text" name="Site" value="{{ old('Site', $user->Site) }}" class="form-control"
                             required>

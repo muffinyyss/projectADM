@@ -34,257 +34,7 @@
 
                     <!-- Role cards -->
                     <div class="row g-6">
-                        {{-- <div class="col-xl-4 col-lg-6 col-md-6"> --}}
-                        {{-- <div class="card">
-                                <div class="card-body"> --}}
-                        {{-- <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="mb-0">Total 4 users</p>
-                                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Vinnie Mostowy" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/5.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Allen Rieske" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/12.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Julee Rossignol" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/6.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li class="avatar">
-                                                <span class="avatar-initial rounded-circle pull-up text-body"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="3 more">+3</span>
-                                            </li>
-                                        </ul>
-                                    </div> --}}
-                        {{-- <div class="d-flex justify-content-between align-items-center">
-                                        <div class="role-heading">
-                                            <h5 class="mb-1">Administrator</h5>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                                class="role-edit-modal">
-                                                <p class="mb-0">Edit Role</p>
-                                            </a>
-                                        </div>
-                                        <a href="javascript:void(0);" class="text-secondary"><i
-                                                class="ri-file-copy-line ri-22px"></i></a>
-                                    </div> --}}
-                        {{-- </div>
-                            </div> --}}
-                        {{-- </div> --}}
-                        {{-- <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="mb-0">Total 7 users</p>
-                                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Jimmy Ressula" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/4.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="John Doe" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/1.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Kristi Lawker" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/2.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li class="avatar">
-                                                <span class="avatar-initial rounded-circle pull-up text-body"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="3 more">+3</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="role-heading">
-                                            <h5 class="mb-1">Editor</h5>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                                class="role-edit-modal">
-                                                <p class="mb-0">Edit Role</p>
-                                            </a>
-                                        </div>
-                                        <a href="javascript:void(0);" class="text-secondary"><i
-                                                class="ri-file-copy-line ri-22px"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="mb-0">Total 5 users</p>
-                                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Andrew Tye" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/6.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Rishi Swaat" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/9.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Rossie Kim" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/12.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li class="avatar">
-                                                <span class="avatar-initial rounded-circle pull-up text-body"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="3 more">+3</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="role-heading">
-                                            <h5 class="mb-1">Users</h5>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                                class="role-edit-modal">
-                                                <p class="mb-0">Edit Role</p>
-                                            </a>
-                                        </div>
-                                        <a href="javascript:void(0);" class="text-secondary"><i
-                                                class="ri-file-copy-line ri-22px"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="mb-0">Total 3 users</p>
-                                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Kim Karlos" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/3.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Katy Turner" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/9.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Peter Adward" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/15.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li class="avatar">
-                                                <span class="avatar-initial rounded-circle pull-up text-body"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="3 more">+3</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="role-heading">
-                                            <h5 class="mb-1">Support</h5>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                                class="role-edit-modal">
-                                                <p class="mb-0">Edit Role</p>
-                                            </a>
-                                        </div>
-                                        <a href="javascript:void(0);" class="text-secondary"><i
-                                                class="ri-file-copy-line ri-22px"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <p class="mb-0">Total 2 users</p>
-                                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                data-bs-placement="top" title="Kim Merchent" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/10.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                data-bs-placement="top" title="Sam D'souza" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/13.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                data-bs-placement="top" title="Nurvi Karlos" class="avatar pull-up">
-                                                <img class="rounded-circle"
-                                                    src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/15.png"
-                                                    alt="Avatar">
-                                            </li>
-                                            <li class="avatar">
-                                                <span class="avatar-initial rounded-circle pull-up text-body"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="3 more">+3</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="role-heading">
-                                            <h5 class="mb-1">Restricted User</h5>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                                class="role-edit-modal">
-                                                <p class="mb-0">Edit Role</p>
-                                            </a>
-                                        </div>
-                                        <a href="javascript:void(0);" class="text-secondary"><i
-                                                class="ri-file-copy-line ri-22px"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card h-100">
-                                <div class="row h-100">
-                                    <div class="col-5">
-                                        <div class="d-flex align-items-end h-100 justify-content-center">
-                                            <img src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/assets/img/illustrations/illustration-3.png"
-                                                class="img-fluid" alt="Image" width="80">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="card-body text-sm-end text-center ps-sm-0">
-                                            <button data-bs-target="#addUser" data-bs-toggle="modal"
-                                                class="btn btn-sm btn-primary mb-4 text-nowrap add-new-role">Add
-                                                New User</button>
-                                            <p class="mb-0">Add user, if it does not exist</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
 
-                        {{-- <div class="col-12">
-                            <h4 class="mt-6 mb-1">Total users with their position</h4>
-                            <p class="mb-0">Find all of your company’s administrator accounts and their
-                                associate position.</p>
-                        </div> --}}
                         <div class="col-12">
                             <!-- Role Table -->
                             <div class="card">
@@ -338,16 +88,34 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-md-10">
                                             <div
                                                 class="d-flex align-items-center justify-content-md-end justify-content-center">
-                                                <div class="me-4">
+
+                                                {{-- <div class="me-4">
                                                     <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                         <label><input type="search" class="form-control form-control-sm"
                                                                 placeholder="Search User"
                                                                 aria-controls="DataTables_Table_0"></label>
                                                     </div>
-                                                </div>
+                                                </div> --}}
+
+                                                <form method="GET" action="{{ route('addUsers') }}">
+                                                    <div class="me-4">
+                                                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                            <label>
+                                                                <input type="search" name="search"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Search User"
+                                                                    value="{{ request('search') }}"
+                                                                    aria-controls="DataTables_Table_0">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
                                                 <div class="add-new">
                                                     {{-- <button
                                                         class="btn btn-primary waves-effect waves-light"
@@ -359,12 +127,9 @@
                                                         data-bs-toggle="offcanvas">Add
                                                         New User</button>
                                                 </div>
-                                                {{-- <div class="card-body text-sm-end text-center ps-sm-0">
-
-                                                    <p class="mb-0">Add user, if it does not exist</p>
-                                                </div> --}}
                                             </div>
                                         </div>
+
                                     </div>
                                     <table class="datatables-users table">
                                         <thead>
@@ -410,9 +175,15 @@
                                                         </a> --}}
 
                                                         <!-- Edit icon -->
-                                                        <a href="{{ route('users.edit', $user['ID']) }}" title="Edit">
+                                                        {{-- <a href="{{ route('users.edit', $user['ID']) }}" title="Edit">
+                                                            <i class="ri-pencil-line ri-20px"></i>
+                                                        </a> --}}
+
+                                                        <a href="{{ route('users.edit', ['id' => $user['ID'], 'page' => request()->page]) }}"
+                                                            title="Edit">
                                                             <i class="ri-pencil-line ri-20px"></i>
                                                         </a>
+
 
                                                     </td>
                                                 </tr>

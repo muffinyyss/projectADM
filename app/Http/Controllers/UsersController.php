@@ -10,33 +10,60 @@ use Illuminate\Support\Collection;
 
 class UsersController extends Controller
 {
+  // public function index(Request $request)
+  // {
+  //   $perPage = 30; // จำนวนต่อหน้า
+  //   $page = $request->input('page', 1); // หน้าปัจจุบัน
+
+  //   // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
+  //   $rawUsers = Users::all()->map(function ($user) {
+  //     return $user->toArray(); // แปลง Model เป็น array
+
+  //   });
+
+  //   // ทำ pagination จาก Collection ที่เป็น array แล้ว
+  //   $users = new LengthAwarePaginator(
+  //     $rawUsers->forPage($page, $perPage), // ข้อมูลที่จะแสดงในหน้านั้น
+  //     $rawUsers->count(), // จำนวนทั้งหมด
+  //     $perPage, // ต่อหน้า
+  //     $page,
+  //     ['path' => request()->url(), 'query' => request()->query()] // ให้ pagination ทำงานได้ถูกต้อง
+  //   );
+
+  //   // dd($users);
+  //   return view('admin.addUsers', compact('users'));
+  // }
+
   public function index(Request $request)
   {
-    // $users = User::all()->toArray();
+    $perPage = 30;
+    $page = $request->input('page', 1);
+    $search = $request->input('search');
 
-    // // dd($users);
-    // return view('admin.addUsers', compact('users'));
+    // ดึงผู้ใช้ทั้งหมด
+    $rawUsers = Users::all()
+      ->filter(function ($user) use ($search) {
+        if (!$search)
+          return true; // ถ้าไม่ได้ค้นหา ก็คืนทุกคน
+  
+        // ค้นหาเฉพาะชื่อ (หรือจะใส่เงื่อนไขเพิ่มได้)
+        return str_contains(strtolower($user->name), strtolower($search));
+      })
+      ->map(function ($user) {
+        return $user->toArray();
+      });
 
-    $perPage = 20; // จำนวนต่อหน้า
-    $page = $request->input('page', 1); // หน้าปัจจุบัน
-
-    // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
-    $rawUsers = Users::all()->map(function ($user) {
-      return $user->toArray(); // แปลง Model เป็น array
-    });
-
-    // ทำ pagination จาก Collection ที่เป็น array แล้ว
     $users = new LengthAwarePaginator(
-      $rawUsers->forPage($page, $perPage), // ข้อมูลที่จะแสดงในหน้านั้น
-      $rawUsers->count(), // จำนวนทั้งหมด
-      $perPage, // ต่อหน้า
+      $rawUsers->forPage($page, $perPage),
+      $rawUsers->count(),
+      $perPage,
       $page,
-      ['path' => request()->url(), 'query' => request()->query()] // ให้ pagination ทำงานได้ถูกต้อง
+      ['path' => request()->url(), 'query' => request()->query()]
     );
 
-    // dd($users);
     return view('admin.addUsers', compact('users'));
   }
+
 
   public function store(Request $request)
   {
