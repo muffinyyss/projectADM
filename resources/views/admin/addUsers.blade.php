@@ -39,8 +39,8 @@
                             <!-- Role Table -->
                             <div class="card">
 
-                                <div class="card-header border-bottom">
-                                    {{-- <h6 class="card-title mb-0">Filters</h6>
+                                {{-- <div class="card-header border-bottom"> --}}
+                                {{-- <h6 class="card-title mb-0">Filters</h6>
                                     <div
                                         class="d-flex justify-content-between align-items-center row pt-4 pb-2 gap-4 gap-md-0 gx-5">
                                         <div class="col-md-4 user_role"><select id="UserRole"
@@ -68,7 +68,7 @@
                                                 <option value="Inactive" class="text-capitalize">Inactive</option>
                                             </select></div>
                                     </div> --}}
-                                </div>
+                                {{-- </div> --}}
 
 
                                 <div class="card-datatable table-responsive datatable-roles">

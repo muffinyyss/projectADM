@@ -96,6 +96,35 @@
         href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/form-validation-Z40eMZE8.css"
         class="" />
 
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CbdDuLi-.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CED9k22g.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/_commonjsHelpers-BosuxZz1.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-Czc5UB_B.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popper-DNZnuk_L.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap-B-W6M1Y3.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-XDuO7R8f.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CLUWhEAQ.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/hammer-36U3igM9.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-BKwBoP4T.js">
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/menu-CY9lYqyY.js">
+
+
+
+
+
+
+
     <!-- Include Styles -->
     @include('layouts.sections.styles')
 
