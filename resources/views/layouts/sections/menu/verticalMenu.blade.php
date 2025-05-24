@@ -12,9 +12,9 @@
             <span class="app-brand-text demo menu-text fw-semibold ms-2">{{ session('site') }}</span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+        {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
             <i class="menu-toggle-icon d-xl-block align-middle"></i>
-        </a>
+        </a> --}}
 
     </div>
 
