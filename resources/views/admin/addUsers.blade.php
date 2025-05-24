@@ -30,47 +30,12 @@
                         on assigned position an administrator can have access to what user needs.</p>
 
 
-
-
                     <!-- Role cards -->
                     <div class="row g-6">
-
                         <div class="col-12">
+
                             <!-- Role Table -->
                             <div class="card">
-
-                                {{-- <div class="card-header border-bottom"> --}}
-                                {{-- <h6 class="card-title mb-0">Filters</h6>
-                                    <div
-                                        class="d-flex justify-content-between align-items-center row pt-4 pb-2 gap-4 gap-md-0 gx-5">
-                                        <div class="col-md-4 user_role"><select id="UserRole"
-                                                class="form-select text-capitalize">
-                                                <option value=""> Select Role </option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Author">Author</option>
-                                                <option value="Editor">Editor</option>
-                                                <option value="Maintainer">Maintainer</option>
-                                                <option value="Subscriber">Subscriber</option>
-                                            </select></div>
-                                        <div class="col-md-4 user_plan"><select id="UserPlan"
-                                                class="form-select text-capitalize">
-                                                <option value=""> Select Plan </option>
-                                                <option value="Basic">Basic</option>
-                                                <option value="Company">Company</option>
-                                                <option value="Enterprise">Enterprise</option>
-                                                <option value="Team">Team</option>
-                                            </select></div>
-                                        <div class="col-md-4 user_status"><select id="FilterTransaction"
-                                                class="form-select text-capitalize">
-                                                <option value=""> Select Status </option>
-                                                <option value="Pending" class="text-capitalize">Pending</option>
-                                                <option value="Active" class="text-capitalize">Active</option>
-                                                <option value="Inactive" class="text-capitalize">Inactive</option>
-                                            </select></div>
-                                    </div> --}}
-                                {{-- </div> --}}
-
-
                                 <div class="card-datatable table-responsive datatable-roles">
                                     <div class="row mx-1 mt-3 mb-3">
                                         <div
@@ -175,17 +140,11 @@
                                                             </button>
                                                         </form>
 
-                                                        <!-- View icon -->
-                                                        {{-- <a href="#" class="me-2" title="View">
-                                                            <i class="ri-eye-line ri-20px"></i>
-                                                        </a> --}}
-
                                                         <!-- Edit icon -->
                                                         <a href="{{ route('users.edit', ['id' => $user['ID'], 'page' => request()->page]) }}"
                                                             title="Edit">
                                                             <i class="ri-pencil-line ri-20px"></i>
                                                         </a>
-
 
                                                     </td>
                                                 </tr>
@@ -326,12 +285,11 @@
                             </div>
                         </div>
                     </div>
-
                     <!--/ Add User Modal -->
 
 
-                    <!-- Edit User Modal -->
-                    <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+                    {{-- <!-- Edit User Modal --> --}}
+                    {{-- <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-simple modal-edit-user">
                             <div class="modal-content">
                                 <div class="modal-body p-0">
@@ -413,8 +371,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--/ Edit User Modal -->
+                    </div> --}}
+                    {{-- <!--/ Edit User Modal --> --}}
                     <!-- / Modal -->
 
                 </div>

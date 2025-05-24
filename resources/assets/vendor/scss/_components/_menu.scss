@@ -178,7 +178,7 @@
   color: $headings-color;
   transform: translateY(-49%);
   line-height: $line-height-xs;
-    content: '\EA6E';
+  content: '\EA6E';
 
   .menu:not(.menu-no-animation) & {
     transition-duration: $menu-animation-duration;

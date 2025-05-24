@@ -15,6 +15,7 @@
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
             <i class="menu-toggle-icon d-xl-block align-middle"></i>
         </a>
+
     </div>
 
     <div class="menu-inner-shadow"></div>

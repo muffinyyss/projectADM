@@ -97,33 +97,103 @@
         class="" />
 
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CbdDuLi-.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CbdDuLi-.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CED9k22g.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CED9k22g.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/_commonjsHelpers-BosuxZz1.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/_commonjsHelpers-BosuxZz1.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-Czc5UB_B.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-Czc5UB_B.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popper-DNZnuk_L.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popper-DNZnuk_L.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap-B-W6M1Y3.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap-B-W6M1Y3.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-XDuO7R8f.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-XDuO7R8f.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CLUWhEAQ.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CLUWhEAQ.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/hammer-36U3igM9.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/hammer-36U3igM9.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-BKwBoP4T.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-BKwBoP4T.js" />
     <link rel="modulepreload"
-        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/menu-CY9lYqyY.js">
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/menu-CY9lYqyY.js" />
+
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CbdDuLi-.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popper-DNZnuk_L.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap-B-W6M1Y3.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/node-waves-XDuO7R8f.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/perfect-scrollbar-CLUWhEAQ.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/hammer-36U3igM9.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/typeahead-BKwBoP4T.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/menu-CY9lYqyY.js">
+    </script>
+
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-bootstrap5-DVZaE8TT.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/_commonjsHelpers-BosuxZz1.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/_commonjs-dynamic-modules-TDtrdbi3.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-CED9k22g.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/jquery-Czc5UB_B.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popular-BiiL9sLA.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap5-COKFI6zn.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/index-CrI7K4FP.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/auto-focus-DSygTglc.js" />
+
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/datatables-bootstrap5-DVZaE8TT.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/popular-BiiL9sLA.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/bootstrap5-COKFI6zn.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/auto-focus-DSygTglc.js">
+    </script><!-- END: Page Vendor JS-->
+    <!-- BEGIN: Theme JS-->
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/main-DRGn0ueN.js" />
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/main-DRGn0ueN.js">
+    </script>
 
 
 
-
-
-
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/app-access-roles-BdlGvEK7.js" />
+    <link rel="modulepreload"
+        href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/modal-add-role-BPqCDwfP.js" />
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/app-access-roles-BdlGvEK7.js">
+    </script>
+    <script type="module"
+        src="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo/build/assets/modal-add-role-BPqCDwfP.js">
+    </script>
 
     <!-- Include Styles -->
     @include('layouts.sections.styles')
