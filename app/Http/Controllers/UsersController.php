@@ -15,11 +15,31 @@ class UsersController extends Controller
   {
     $perPage = 25; // จำนวนต่อหน้า
     $page = $request->input('page', 1); // หน้าปัจจุบัน
+    $search = $request->input('search'); // รับค่าค้นหา
+    $position = $request->input('position');
+    // $positions = Users::select('position')->distinct()->pluck('position');
 
-    // ดึงผู้ใช้ทั้งหมด แล้วแปลงเป็น array ทีละคน
-    $rawUsers = Users::all()->map(function ($user) {
-      return $user->toArray(); // แปลง Model เป็น array
 
+    // query ผู้ใช้ (ยังไม่โหลดทั้งหมด)
+    $query = Users::query();
+
+    // ถ้ามีคำค้นหา
+    if ($search) {
+      $query->where(function ($q) use ($search) {
+        $q->where('EN_fullname', 'like', "%{$search}%")
+          ->orWhere('username', 'like', "%{$search}%")
+          ->orWhere('position', 'like', "%{$search}%");
+      });
+    }
+
+    /// ถ้าเลือก position จริง ๆ และไม่ใช่ค่าว่าง
+    if (!empty($position)) {
+      $query->where('position', $position);
+    }
+
+    // ดึงข้อมูลทั้งหมดจาก query ที่กรองแล้ว (ยังเป็น Collection)
+    $rawUsers = $query->get()->map(function ($user) {
+      return $user->toArray();
     });
 
     // ทำ pagination จาก Collection ที่เป็น array แล้ว
@@ -31,41 +51,12 @@ class UsersController extends Controller
       ['path' => request()->url(), 'query' => request()->query()] // ให้ pagination ทำงานได้ถูกต้อง
     );
 
+    // ดึงตำแหน่งทั้งหมดจาก DB สำหรับ dropdown
+    $positions = Users::select('position')->distinct()->pluck('position');
+
     // dd($users);
-    return view('admin.addUsers', compact('users'));
+    return view('admin.addUsers', compact('users', 'search', 'positions'));
   }
-
-  // public function index(Request $request)
-  // {
-  //   $perPage = 30;
-  //   $page = $request->input('page', 1);
-  //   $search = $request->input('search');
-
-  //   // ดึงผู้ใช้ทั้งหมด
-  //   $rawUsers = Users::all()->map(function ($user) {
-  //     return $user->toArray();
-  //   });
-
-  //   // กรองตามคำค้น
-  //   if ($search) {
-  //     $rawUsers = $rawUsers->filter(function ($user) use ($search) {
-  //       return stripos($user['name'], $search) !== false || stripos($user['username'], $search) !== false || stripos($user['position'], $search) !== false;
-  //     })->values(); // รีเซ็ต index
-  //   }
-
-  //   // paginate จาก collection
-  //   $currentPageItems = $rawUsers->slice(($page - 1) * $perPage, $perPage)->values();
-
-  //   $users = new LengthAwarePaginator(
-  //     $currentPageItems,
-  //     $rawUsers->count(),
-  //     $perPage,
-  //     $page,
-  //     ['path' => $request->url(), 'query' => $request->query()]
-  //   );
-
-  //   return view('admin.addUsers', compact('users', 'search'));
-  // }
 
   public function store(Request $request)
   {
@@ -93,20 +84,6 @@ class UsersController extends Controller
       'Position' => $request->Position,
       'Branch' => $request->Branch,
     ]);
-
-    // ตรวจสอบข้อมูลที่ถูก validate แล้ว
-    // dd($request);
-    // User::create([
-    //   'Site' => $request->input('site'),
-    //   'TH_fullname' => $request->input('th_fullname'),
-    //   'EN_fullname' => $request->input('en_fullname'),
-    //   'Nickname' => $request->input('nickname'),
-    //   'Username' => $request->input('username'),
-    //   'Password' => bcrypt($request->input('password')),
-    //   'Position' => $request->input('position'),
-    //   'Branch' => $request->input('branch'),
-    // ]);
-
 
     return redirect()->route('addUsers')->with('success', 'User added successfully.');
   }
@@ -162,53 +139,6 @@ class UsersController extends Controller
 
     return redirect()->route('addUsers')->with('success', 'User updated successfully.');
   }
-
-
-  // public function search(Request $request)
-  // {
-  //   $search = $request->input('search');
-
-  //   $query = Users::query();
-
-  //   if ($search) {
-  //     $query->where(function ($q) use ($search) {
-  //       $q->where('EN_fullname', 'LIKE', "%{$search}%")
-  //         ->orWhere('Username', 'LIKE', "%{$search}%")
-  //         ->orWhere('Position', 'LIKE', "%{$search}%");
-  //     });
-  //   }
-
-  //   $users = $query->orderBy('ID', 'desc')->limit(30)->get();
-
-  //   return response()->json($users);
-  // }
-
-  // public function search(Request $request)
-  // {
-  //   $search = $request->input('search');
-
-  //   $query = Users::query();
-
-  //   if ($search) {
-  //     $query->where(function ($q) use ($search) {
-  //       $q->where('EN_fullname', 'LIKE', "%{$search}%")
-  //         ->orWhere('Username', 'LIKE', "%{$search}%")
-  //         ->orWhere('Position', 'LIKE', "%{$search}%");
-  //     });
-  //   }
-
-  //   $users = $query->orderBy('ID', 'desc')->limit(30)->get();
-  //   // แปลงเป็น array ก่อนส่งไป view
-  //   $usersArray = $users->toArray();
-  //   // dd($users->toArray());
-  //   // return redirect()->route('addUsers'), ['users' => $users]);
-  //   // return redirect()->route('addUsers')->with('users', $users);
-  //   return view('admin.addUsers', ['users' => $usersArray]);
-
-
-  // }
-
-
 
 
 

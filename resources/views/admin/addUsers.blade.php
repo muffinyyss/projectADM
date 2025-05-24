@@ -40,7 +40,7 @@
                             <div class="card">
 
                                 <div class="card-header border-bottom">
-                                    <h6 class="card-title mb-0">Filters</h6>
+                                    {{-- <h6 class="card-title mb-0">Filters</h6>
                                     <div
                                         class="d-flex justify-content-between align-items-center row pt-4 pb-2 gap-4 gap-md-0 gx-5">
                                         <div class="col-md-4 user_role"><select id="UserRole"
@@ -67,7 +67,7 @@
                                                 <option value="Active" class="text-capitalize">Active</option>
                                                 <option value="Inactive" class="text-capitalize">Inactive</option>
                                             </select></div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
 
@@ -93,61 +93,45 @@
                                             <div
                                                 class="d-flex align-items-center justify-content-md-end justify-content-center">
 
-                                                <div class="me-4">
-                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                        <label><input type="search" class="form-control form-control-sm"
-                                                                placeholder="Search User"
-                                                                aria-controls="DataTables_Table_0"></label>
+                                                <form method="GET" action="{{ route('addUsers') }}"
+                                                    class="d-flex gap-2 flex-wrap">
+                                                    <div class="user_role w-px-200 pb-5 pb-md-0 me-4">
+                                                        <select id="UserRole" name="position"
+                                                            class="form-select text-capitalize form-select-sm"
+                                                            onchange="this.form.submit()">
+                                                            <option value=""> Select Position </option>
+                                                            @foreach ($positions as $position)
+                                                                <option value="{{ $position }}"
+                                                                    {{ request('position') == $position ? 'selected' : '' }}>
+                                                                    {{ $position }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-                                                </div>
-                                                {{-- <div class="me-4">
-                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                        <label>
-                                                            <input type="search" id="searchInput"
-                                                                class="form-control form-control-sm"
-                                                                placeholder="Search User">
-                                                        </label>
-                                                    </div>
-                                                </div> --}}
+                                                </form>
 
-                                                {{--
-                                                <form method="GET" action="{{ route('addUsers') }}">
-                                                    <div class="me-4">
+
+                                                <div class="me-4">
+                                                    <form method="GET" action="{{ route('addUsers') }}">
                                                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                             <label>
                                                                 <input type="search" name="search"
                                                                     class="form-control form-control-sm"
                                                                     placeholder="Search User"
-                                                                    value="{{ request('search') }}"
-                                                                    aria-controls="DataTables_Table_0">
+                                                                    aria-controls="DataTables_Table_0"
+                                                                    value="{{ request('search') }}">
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                </form> --}}
-
-                                                {{-- <form method="GET" action="{{ route('addUsers') }}">
-                                                    <div class="input-group">
-                                                        <input type="search" name="search"
-                                                            class="form-control form-control-sm" placeholder="Search User"
-                                                            value="{{ request('search') }}">
-                                                        <button type="submit"
-                                                            class="btn btn-primary btn-sm">Search</button>
-                                                    </div>
-                                                </form> --}}
-
-
+                                                    </form>
+                                                </div>
 
                                                 <div class="add-new">
-                                                    {{-- <button
-                                                        class="btn btn-primary waves-effect waves-light"
-                                                        data-bs-toggle="offcanvas" data-bs-target="#addUser"><i
-                                                            class="ri-add-line me-0 me-sm-1 d-inline-block d-sm-none"></i><span
-                                                            class="d-none d-sm-inline-block"> Add New User </span></button> --}}
                                                     <button data-bs-target="#addUser" data-bs-toggle="modal"
                                                         class="btn btn-primary waves-effect waves-light"
                                                         data-bs-toggle="offcanvas">Add
                                                         New User</button>
                                                 </div>
+
                                             </div>
                                         </div>
 
@@ -563,19 +547,19 @@
 
 @endsection
 
-@section('page-script')
+{{-- @section('page-script')
     <script>
-        const searchInput = document.querySelector('input[name="search"]');
-        let timer = null;
+        document.getElementById('search').addEventListener('keyup', function() {
+            const query = this.value;
 
-        searchInput.addEventListener('input', function() {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                this.form.submit();
-            }, 500); // รอ 0.5 วินาทีหลังพิมพ์ถึงจะ submit
+            fetch(`/live-search?query=${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('user-table').innerHTML = data;
+                });
         });
     </script>
 
 
 
-@endsection
+@endsection --}}
