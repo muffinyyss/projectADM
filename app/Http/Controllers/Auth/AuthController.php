@@ -8,6 +8,8 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -21,78 +23,6 @@ class AuthController extends Controller
     // ถ้ายังไม่ล็อกอิน แสดงหน้า login
     return view('auth.login');
   }
-
-  // ฟังก์ชันการ Login
-  // public function login(Request $request)
-  // {
-
-  //   // ค้นหาผู้ใช้จากฐานข้อมูล
-  //   $user = User::where('Username', $request->username)
-  //     ->where('Site', $request->site)
-  //     ->first();
-
-  //   // ตรวจสอบค่าที่กรอกในฟอร์ม
-  //   $request->validate([
-  //     'site' => 'required|string',
-  //     'username' => 'required|string',
-  //     'password' => 'required|string',
-  //   ]);
-
-  //   // ข้อมูลที่อนุญาตให้เข้าใช้งาน (กำหนดล่วงหน้า)
-  //   $validSite = 'spcg';
-  //   $validUsername = 'admin';
-  //   $validPassword = '123';
-  //   $validRole = 'sale';
-  //   $errors = [];
-
-
-  //   // ตรวจสอบข้อมูล
-  //   if (
-  //     $request->site === $validSite &&
-  //     $request->username === $validUsername &&
-  //     $request->password === $validPassword
-  //   ) {
-
-  //     // เก็บข้อมูล session เมื่อ login สำเร็จ
-  //     Session::put('logged_in', true);
-  //     Session::put('site', $request->site);
-  //     Session::put('username', $request->username);
-  //     Session::put('roles', $validRole);
-
-  //     // เพิ่มบรรทัดนี้เพื่อบันทึกค่า role ลง log
-  //     // \Log::info('Role ที่เก็บใน session หลัง login คือ: ' . Session::get('roles'));
-
-  //     // Redirect ไปหน้า Home
-  //     return redirect()->route('home');
-
-  //   }
-
-
-  //   if ($request->site !== $validSite) {
-  //     $errors['site'] = 'Site name ไม่ถูกต้อง';
-  //   }
-  //   if ($request->username !== $validUsername) {
-  //     $errors['username'] = 'Username ไม่ถูกต้อง';
-  //   }
-  //   if ($request->password !== $validPassword) {
-  //     $errors['password'] = 'Password ไม่ถูกต้อง';
-  //   }
-
-
-  //   // ถ้าข้อมูลผิด ล้าง session เผื่อมีค้าง
-  //   Session::forget('logged_in');
-
-  //   // สร้างข้อมูล input ที่จะส่งกลับ
-  //   $oldInput = [
-  //     'site' => ($request->site === $validSite) ? $request->site : '',
-  //     'username' => ($request->username === $validUsername) ? $request->username : '',
-  //     'password' => ($request->password === $validPassword) ? $request->password : '',  // ไม่ควรส่ง password กลับเลย ไม่ปลอดภัยและ UX ดี
-  //   ];
-
-
-  //   return back()->withErrors($errors)->withInput($oldInput);
-
-  // }
 
   public function login(Request $request)
   {
@@ -121,6 +51,8 @@ class AuthController extends Controller
         Session::put('nickname', $user->Nickname);
         Session::put('position', $user->Position);
         Session::put('branch', $user->Branch);
+
+        // dd($user->TH_fullname);
 
         return redirect()->route('home');
       } else {
@@ -155,4 +87,25 @@ class AuthController extends Controller
 
     return redirect('/'); // กลับไปหน้า login
   }
+
+
+
+  public function getMenuJson()
+  {
+    // 1. โหลดไฟล์ JSON เป็น string
+    $jsonString = file_get_contents(resource_path('menu/verticalMenu.json'));
+    // dd(json_decode($jsonString, true));
+    // 2. ดึง fullname_th จาก session
+    $fullname = Session::get('fullname_th', 'Guest');
+    $fullnameWithQuotes = '"คุณ' . $fullname . '"';
+
+    // 3. แทนที่ {fullname_th} ใน string JSON
+    $jsonString = str_replace('{fullname_th}', $fullnameWithQuotes, $jsonString);
+
+    dd($jsonString);
+    // 4. ส่งกลับ JSON
+    return response($jsonString, 200)->header('Content-Type', 'application/json');
+  }
+
+
 }

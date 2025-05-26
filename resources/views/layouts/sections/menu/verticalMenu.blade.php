@@ -6,8 +6,8 @@
     <div class="app-brand demo">
         <a href="{{ url('/') }}" class="app-brand-link">
             <span class="app-brand-logo demo me-1">
-                @include('_partials.macros', ['height' => 20])
-                {{-- <img src="./asset/img" class="rounded" alt="..."> --}}
+                {{-- @include('_partials.macros', ['height' => 20]) --}}
+                <img src="./assets/adm.png" class="rounded" width="35" height="35">
             </span>
             <span class="app-brand-text demo menu-text fw-semibold ms-2">{{ session('site') }}</span>
         </a>
