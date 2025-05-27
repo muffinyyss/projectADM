@@ -70,6 +70,8 @@ class MenuServiceProvider extends ServiceProvider
   //   });
   // }
 
+
+
   public function boot(): void
   {
     View::composer('*', function ($view) {
@@ -78,51 +80,21 @@ class MenuServiceProvider extends ServiceProvider
       $verticalMenuData = json_decode($verticalMenuJson, true);
 
       $userRole = Session::get('position', 'guest');
-
-      $menuList = $verticalMenuData['menu'] ?? []; // ป้องกัน error ถ้าไม่มี key menu
-
-      $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
-        // กรองเมนูที่มี key 'position' เท่านั้น
-        if (!isset($item['position'])) {
-          return false; // ไม่เอาเมนูที่ไม่มี position กำหนด
-        }
-
-        if ($userRole === 'Admin') {
-          // เมนูนี้มี position แสดงว่าให้ Admin เห็น
-          return true;
-        } else {
-          // สำหรับ user ทั่วไป ให้ตรวจสอบว่า userRole อยู่ใน position หรือไม่
-          return in_array($userRole, $item['position']);
-        }
-      })->map(function ($item) use ($userRole) {
-        if (isset($item['submenu'])) {
-          $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
-            if (!isset($sub['position'])) {
-              return false; // ไม่เอา submenu ที่ไม่มี position
-            }
-
-            if ($userRole === 'Admin') {
-              return true; // Admin เห็น submenu ที่มี position
-            } else {
-              return in_array($userRole, $sub['position']);
-            }
-          })->values()->all();
-        }
-        return $item;
-      })->values()->all();
-
-      // ✅ เพิ่มเฉพาะตรงนี้ — ไม่ยุ่งกับโค้ดเดิมเลย
-
+      $fullname = Session::get('fullname_th', 'Guest');
+      $fullnameFormatted = '"เดือนนี้","' . 'คุณ' . $fullname . '"';
       $variables = [
-        'fullname_th' => Session::get('fullname_th', 'Guest User'),
+        'fullname_th' => $fullnameFormatted,
         'username' => Session::get('username', 'guest'),
       ];
 
+      $menuList = $verticalMenuData['menu'] ?? [];
+
+      // ฟังก์ชันสำหรับแทนค่าตัวแปรใน URL
       $replaceMenuVariables = function (array $menu) use (&$replaceMenuVariables, $variables) {
         foreach ($menu as &$item) {
           if (isset($item['url'])) {
             foreach ($variables as $key => $value) {
-              $item['url'] = str_replace('{{ ' . $key . ' }}', urlencode($value), $item['url']);
+              $item['url'] = str_replace('{' . $key . '}', $value, $item['url']);
             }
           }
 
@@ -133,13 +105,148 @@ class MenuServiceProvider extends ServiceProvider
         return $menu;
       };
 
-      // เรียกใช้ฟังก์ชันเพื่อแทนค่าตัวแปร
-      $filteredMenu = $replaceMenuVariables($filteredMenu);
+      // กรองเมนูตามตำแหน่ง
+      $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
+        if (!isset($item['position']))
+          return false;
 
-      // ✅ ส่งไปยัง view ตามเดิม
+        return $userRole === 'Admin' || in_array($userRole, $item['position']);
+      })->map(function ($item) use ($userRole) {
+        if (isset($item['submenu'])) {
+          $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
+            if (!isset($sub['position']))
+              return false;
+
+            return $userRole === 'Admin' || in_array($userRole, $sub['position']);
+          })->values()->all();
+        }
+        return $item;
+      })->values()->all();
+
+      // 🔁 แทนค่าตัวแปรใน URL เช่น {fullname_th}
+      $filteredMenu = $replaceMenuVariables($filteredMenu);
+      // dd(json_decode(json_encode(['menu' => $filteredMenu])));
+      // ตรวจสอบผลลัพธ์ (ลบออกเมื่อเสร็จ)
+      // dd($filteredMenu);
+
       $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
     });
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // public function boot(): void
+  // {
+  //   View::composer('*', function ($view) {
+
+  //     $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
+  //     $verticalMenuData = json_decode($verticalMenuJson, true);
+
+  //     $userRole = Session::get('position', 'guest');
+
+  //     $menuList = $verticalMenuData['menu'] ?? []; // ป้องกัน error ถ้าไม่มี key menu
+
+  //     $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
+  //       // กรองเมนูที่มี key 'position' เท่านั้น
+  //       if (!isset($item['position'])) {
+  //         return false; // ไม่เอาเมนูที่ไม่มี position กำหนด
+  //       }
+
+  //       if ($userRole === 'Admin') {
+  //         // เมนูนี้มี position แสดงว่าให้ Admin เห็น
+  //         return true;
+  //       } else {
+  //         // สำหรับ user ทั่วไป ให้ตรวจสอบว่า userRole อยู่ใน position หรือไม่
+  //         return in_array($userRole, $item['position']);
+  //       }
+  //     })->map(function ($item) use ($userRole) {
+  //       if (isset($item['submenu'])) {
+  //         $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
+  //           if (!isset($sub['position'])) {
+  //             return false; // ไม่เอา submenu ที่ไม่มี position
+  //           }
+
+  //           if (isset($sub['url'])) {
+
+  //           }
+
+  //           if ($userRole === 'Admin') {
+  //             return true; // Admin เห็น submenu ที่มี position
+  //           } else {
+  //             return in_array($userRole, $sub['position']);
+  //           }
+  //         })->values()->all();
+  //       }
+  //       return $item;
+  //     })->values()->all();
+
+  //     // ✅ เพิ่มเฉพาะตรงนี้ — ไม่ยุ่งกับโค้ดเดิมเลย
+
+  //     // $variables = [
+  //     //   'fullname_th' => Session::get('fullname_th', 'Guest User'),
+  //     //   'username' => Session::get('username', 'guest'),
+  //     // ];
+
+  //     // $replaceMenuVariables = function (array $menu) use (&$replaceMenuVariables, $variables) {
+  //     //   foreach ($menu as &$item) {
+  //     //     if (isset($item['url'])) {
+  //     //       foreach ($variables as $key => $value) {
+  //     //         $item['url'] = str_replace('{{ ' . $key . ' }}', $value, $item['url']);
+
+  //     //       }
+  //     //     }
+
+  //     //     if (isset($item['submenu'])) {
+  //     //       $item['submenu'] = $replaceMenuVariables($item['submenu']);
+  //     //       // dd($item['submenu']);
+
+  //     //     }
+  //     //   }
+
+  //     //   return $menu;
+  //     // };
+
+  //     // เรียกใช้ฟังก์ชันเพื่อแทนค่าตัวแปร
+  //     // $filteredMenu = $replaceMenuVariables($filteredMenu);
+  //     // dd($filteredMenu);
+
+  //     $fullname = Session::get('fullname_th', 'Guest');
+  //     $fullnameWithQuotes = '"คุณ' . $fullname . '"';
+
+  //     dd($filteredMenu);
+  //     // dd(json_decode(json_encode(['menu' => $filteredMenu])));
+
+  //     // ✅ ส่งไปยัง view ตามเดิม
+  //     $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
+  //   });
+  // }
 
 
 
@@ -179,7 +286,7 @@ class MenuServiceProvider extends ServiceProvider
       }
     }
 
-    \Log::info('Filtered menu count: ' . count($filtered));
+    // \Log::info('Filtered menu count: ' . count($filtered));
 
     // แปลง filtered array เป็น object ก่อน return (ถ้าต้องการ)
     return $filtered;

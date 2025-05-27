@@ -91,29 +91,4 @@ class AuthController extends Controller
   }
 
 
-
-  public static function getMenuJson()
-  {
-    // 1. โหลดไฟล์ JSON เป็น string
-    $jsonString = file_get_contents(resource_path('menu/verticalMenu.json'));
-
-    // 2. ดึง fullname_th จาก session
-    $fullname = Session::get('fullname_th', 'Guest');
-    $fullnameWithQuotes = '"คุณ' . $fullname . '"';
-
-    // 3. แทนที่ {fullname_th} ใน string JSON
-    $jsonString = str_replace('{fullname_th}', $fullnameWithQuotes, $jsonString);
-
-    // 4. ส่งกลับ JSON
-    // return response($jsonString, 200)->header('Content-Type', 'application/json');
-
-    $menu = json_decode($jsonString); // ใช้ object (ไม่ใช้ true เพราะ Blade ใช้ ->)
-    // dd($jsonString);
-
-    return view('layouts.sections.menu.verticalMenu', ['menuData' => $jsonString]);
-  }
-
-
-
-
 }

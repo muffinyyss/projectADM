@@ -70,7 +70,7 @@ Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.updat
 Route::get('/users/search', [UsersController::class, 'search'])->name('users.search');
 
 
-Route::get('/menu-json', [AuthController::class, 'getMenuJson']);
+// Route::get('/menu-json', [AuthController::class, 'getMenuJson']);
 
 
 
