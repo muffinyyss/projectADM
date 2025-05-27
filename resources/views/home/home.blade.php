@@ -15,11 +15,21 @@
 @endsection
 
 @section('content')
-    {{-- <iframe src="https://www.manviga.com/board/spcg_sale" width="100%" height="600px" style="border: none;"></iframe> --}}
+    {{-- <div class="container"> --}}
+    <h2 class="text-center">รายงานยอดขายประจำวัน</h2>
 
-    <div class="row gy-6">
-        <!-- Congratulations card -->
-        <div class="col-md-12 col-lg-4">
+    <iframe src="https://manviga.com/board/spcg_sale" width="100%" height="800px" style="border: 1px solid #ccc;"
+        frameborder="0" allowfullscreen>
+    </iframe>
+    {{-- </div> --}}
+@endsection
+
+{{-- @section('content') --}}
+{{-- <iframe src="https://www.manviga.com/board/spcg_sale" width="100%" height="600px" style="border: none;"></iframe> --}}
+
+{{-- <div class="row gy-6"> --}}
+<!-- Congratulations card -->
+{{-- <div class="col-md-12 col-lg-4">
 
             <div class="card">
                 <div class="card-body text-nowrap">
@@ -32,11 +42,11 @@
                 <img src="{{ asset('assets/img/illustrations/trophy.png') }}"
                     class="position-absolute bottom-0 end-0 me-5 mb-5" width="83" alt="view sales">
             </div>
-        </div>
-        <!--/ Congratulations card -->
+        </div> --}}
+<!--/ Congratulations card -->
 
-        <!-- Transactions -->
-        <div class="col-lg-8">
+<!-- Transactions -->
+{{-- <div class="col-lg-8">
             <div class="card h-100">
                 <div class="card-header">
                     <div class="d-flex align-items-center justify-content-between">
@@ -112,11 +122,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ Transactions -->
+        </div> --}}
+<!--/ Transactions -->
 
-        <!-- Weekly Overview Chart -->
-        <div class="col-xl-4 col-md-6">
+<!-- Weekly Overview Chart -->
+{{-- <div class="col-xl-4 col-md-6">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
@@ -147,11 +157,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ Weekly Overview Chart -->
+        </div> --}}
+<!--/ Weekly Overview Chart -->
 
-        <!-- Total Earnings -->
-        <div class="col-xl-4 col-md-6">
+<!-- Total Earnings -->
+{{-- <div class="col-xl-4 col-md-6">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="card-title m-0 me-2">Total Earning</h5>
@@ -236,14 +246,14 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <!--/ Total Earnings -->
+        </div> --}}
+<!--/ Total Earnings -->
 
-        <!-- Four Cards -->
-        <div class="col-xl-4 col-md-6">
-            <div class="row gy-6">
-                <!-- Total Profit line chart -->
-                <div class="col-sm-6">
+<!-- Four Cards -->
+{{-- <div class="col-xl-4 col-md-6">
+            <div class="row gy-6"> --}}
+<!-- Total Profit line chart -->
+{{-- <div class="col-sm-6">
                     <div class="card h-100">
                         <div class="card-header pb-0">
                             <h4 class="mb-0">$86.4k</h4>
@@ -253,10 +263,10 @@
                             <h6 class="text-center mb-0">Total Profit</h6>
                         </div>
                     </div>
-                </div>
-                <!--/ Total Profit line chart -->
-                <!-- Total Profit Weekly Project -->
-                <div class="col-sm-6">
+                </div> --}}
+<!--/ Total Profit line chart -->
+<!-- Total Profit Weekly Project -->
+{{-- <div class="col-sm-6">
                     <div class="card h-100">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div class="avatar">
@@ -285,10 +295,10 @@
                             <small>Weekly Project</small>
                         </div>
                     </div>
-                </div>
-                <!--/ Total Profit Weekly Project -->
-                <!-- New Yearly Project -->
-                <div class="col-sm-6">
+                </div> --}}
+<!--/ Total Profit Weekly Project -->
+<!-- New Yearly Project -->
+{{-- <div class="col-sm-6">
                     <div class="card h-100">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div class="avatar">
@@ -317,10 +327,10 @@
                             <small>Yearly Project</small>
                         </div>
                     </div>
-                </div>
-                <!--/ New Yearly Project -->
-                <!-- Sessions chart -->
-                <div class="col-sm-6">
+                </div> --}}
+<!--/ New Yearly Project -->
+<!-- Sessions chart -->
+{{-- <div class="col-sm-6">
                     <div class="card h-100">
                         <div class="card-header pb-0">
                             <h4 class="mb-0">2,856</h4>
@@ -330,14 +340,14 @@
                             <h6 class="text-center mb-0">Sessions</h6>
                         </div>
                     </div>
-                </div>
-                <!--/ Sessions chart -->
-            </div>
-        </div>
-        <!--/ four cards -->
+                </div> --}}
+<!--/ Sessions chart -->
+{{-- </div>
+        </div> --}}
+<!--/ four cards -->
 
-        <!-- Sales by Countries -->
-        <div class="col-xl-4 col-md-6">
+<!-- Sales by Countries -->
+{{-- <div class="col-xl-4 col-md-6">
             <div class="card h-100">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="card-title m-0 me-2">Sales by Countries</h5>
@@ -451,11 +461,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ Sales by Countries -->
+        </div> --}}
+<!--/ Sales by Countries -->
 
-        <!-- Deposit / Withdraw -->
-        <div class="col-xl-8">
+<!-- Deposit / Withdraw -->
+{{-- <div class="col-xl-8">
             <div class="card-group">
                 <div class="card mb-0">
                     <div class="card-body card-separator">
@@ -612,11 +622,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Deposit / Withdraw -->
+        </div> --}}
+<!-- Deposit / Withdraw -->
 
-        <!-- Data Tables -->
-        <div class="col-12">
+<!-- Data Tables -->
+{{-- <div class="col-12">
             <div class="card overflow-hidden">
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -809,7 +819,7 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <!--/ Data Tables -->
-    </div>
-@endsection
+        </div> --}}
+<!--/ Data Tables -->
+{{-- </div> --}}
+{{-- @endsection --}}

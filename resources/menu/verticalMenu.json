@@ -58,6 +58,17 @@
       ]
     },
     {
+      "url": "https://www.manviga.com/board/spcg_sale",
+      "icon": "menu-icon tf-icons bi bi-star-fill",
+      "name": "SPCG Sale Today",
+      "slug": "saletoday",
+      "target": "_blank",
+      "position": [
+        "Admin",
+        "Sales Representative"
+      ]
+    },
+    {
       "name": "Admin",
       "icon": "menu-icon tf-icons bi bi-person-add",
       "position": [
