@@ -58,7 +58,7 @@ class MenuServiceProvider extends ServiceProvider
 
       // กรองเมนูตามตำแหน่ง
       $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole, $fullname_en) {
-        if (!isset($item['position']))
+        if (!isset($item['position']) && !isset($item['users']))
           return false;
 
         // 🔽 เพิ่มการตรวจสอบ user
@@ -69,6 +69,14 @@ class MenuServiceProvider extends ServiceProvider
         }
 
         return $userRole === 'Admin' || in_array($userRole, $item['position']);
+        // เช็คสิทธิ์ user ตามตำแหน่ง (position)
+        // $hasPosition = isset($item['position']) && ($userRole === 'Admin' || in_array($userRole, $item['position']));
+
+        // เช็คสิทธิ์ user ตามรายชื่อ (users)
+        // $hasUser = isset($item['users']) && is_array($item['users']) && in_array($fullname_en, $item['users']);
+
+        // ถ้ามี position หรือ มี users ตรงกับ user ปัจจุบัน ให้แสดงเมนูนี้
+        // return $hasPosition || $hasUser;
       })->map(function ($item) use ($userRole) {
         if (isset($item['submenu'])) {
           $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
