@@ -58,25 +58,25 @@ class MenuServiceProvider extends ServiceProvider
 
       // กรองเมนูตามตำแหน่ง
       $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole, $fullname_en) {
-        if (!isset($item['position']) && !isset($item['users']))
+        if (!isset($item['position']) && !isset($item['fullname_en']))
           return false;
 
         // 🔽 เพิ่มการตรวจสอบ user
-        if (isset($item['users']) && is_array($item['users'])) {
-          if (!in_array($fullname_en, $item['users'])) {
+        if (isset($item['fullname_en']) && is_array($item['fullname_en'])) {
+          if (!in_array($fullname_en, $item['fullname_en'])) {
             return false;
           }
         }
 
-        return $userRole === 'Admin' || in_array($userRole, $item['position']);
+        // return $userRole === 'Admin' || in_array($userRole, $item['position']);
         // เช็คสิทธิ์ user ตามตำแหน่ง (position)
-        // $hasPosition = isset($item['position']) && ($userRole === 'Admin' || in_array($userRole, $item['position']));
+        $hasPosition = isset($item['position']) && ($userRole === 'Admin' || in_array($userRole, $item['position']));
 
         // เช็คสิทธิ์ user ตามรายชื่อ (users)
-        // $hasUser = isset($item['users']) && is_array($item['users']) && in_array($fullname_en, $item['users']);
+        $hasUser = isset($item['fullname_en']) && is_array($item['fullname_en']) && in_array($fullname_en, $item['fullname_en']);
 
         // ถ้ามี position หรือ มี users ตรงกับ user ปัจจุบัน ให้แสดงเมนูนี้
-        // return $hasPosition || $hasUser;
+        return $hasPosition || $hasUser;
       })->map(function ($item) use ($userRole) {
         if (isset($item['submenu'])) {
           $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
@@ -91,7 +91,7 @@ class MenuServiceProvider extends ServiceProvider
 
       // 🔁 แทนค่าตัวแปรใน URL เช่น {fullname_th}
       $filteredMenu = $replaceMenuVariables($filteredMenu);
-      // dd(json_decode(json_encode(['menu' => $filteredMenu])));
+      dd(json_decode(json_encode(['menu' => $filteredMenu])));
       // ตรวจสอบผลลัพธ์ (ลบออกเมื่อเสร็จ)
       // dd($filteredMenu);
 
