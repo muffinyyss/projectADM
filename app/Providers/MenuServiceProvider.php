@@ -21,56 +21,6 @@ class MenuServiceProvider extends ServiceProvider
   /**
    * Bootstrap services.
    */
-  // public function boot(): void
-  // {
-
-  //   View::composer('*', function ($view) {
-
-  //     $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
-  //     $verticalMenuData = json_decode($verticalMenuJson, true);
-
-  //     $userRole = Session::get('position', 'guest');
-
-  //     $menuList = $verticalMenuData['menu'] ?? []; // ป้องกัน error ถ้าไม่มี key menu
-
-  //     $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
-  //       // กรองเมนูที่มี key 'position' เท่านั้น
-  //       if (!isset($item['position'])) {
-  //         return false; // ไม่เอาเมนูที่ไม่มี position กำหนด
-  //       }
-
-  //       if ($userRole === 'Admin') {
-  //         // เมนูนี้มี position แสดงว่าให้ Admin เห็น
-  //         return true;
-  //       } else {
-  //         // สำหรับ user ทั่วไป ให้ตรวจสอบว่า userRole อยู่ใน position หรือไม่
-  //         return in_array($userRole, $item['position']);
-  //       }
-  //     })->map(function ($item) use ($userRole) {
-  //       if (isset($item['submenu'])) {
-  //         $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
-  //           if (!isset($sub['position'])) {
-  //             return false; // ไม่เอา submenu ที่ไม่มี position
-  //           }
-
-  //           if ($userRole === 'Admin') {
-  //             return true; // Admin เห็น submenu ที่มี position
-  //           } else {
-  //             return in_array($userRole, $sub['position']);
-  //           }
-  //         })->values()->all();
-  //       }
-  //       return $item;
-  //     })->values()->all();
-
-
-  //     // dd(json_decode(json_encode(['menu' => $filteredMenu])));
-  //     $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
-
-  //   });
-  // }
-
-
 
   public function boot(): void
   {
@@ -81,6 +31,7 @@ class MenuServiceProvider extends ServiceProvider
 
       $userRole = Session::get('position', 'guest');
       $fullname = Session::get('fullname_th', 'Guest');
+      $fullname_en = Session::get('fullname_en', 'Guest');
       $fullnameFormatted = '"เดือนนี้","' . 'คุณ' . $fullname . '"';
       $variables = [
         'fullname_th' => $fullnameFormatted,
@@ -106,9 +57,16 @@ class MenuServiceProvider extends ServiceProvider
       };
 
       // กรองเมนูตามตำแหน่ง
-      $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
+      $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole, $fullname_en) {
         if (!isset($item['position']))
           return false;
+
+        // 🔽 เพิ่มการตรวจสอบ user
+        if (isset($item['users']) && is_array($item['users'])) {
+          if (!in_array($fullname_en, $item['users'])) {
+            return false;
+          }
+        }
 
         return $userRole === 'Admin' || in_array($userRole, $item['position']);
       })->map(function ($item) use ($userRole) {
@@ -132,131 +90,6 @@ class MenuServiceProvider extends ServiceProvider
       $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // public function boot(): void
-  // {
-  //   View::composer('*', function ($view) {
-
-  //     $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
-  //     $verticalMenuData = json_decode($verticalMenuJson, true);
-
-  //     $userRole = Session::get('position', 'guest');
-
-  //     $menuList = $verticalMenuData['menu'] ?? []; // ป้องกัน error ถ้าไม่มี key menu
-
-  //     $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole) {
-  //       // กรองเมนูที่มี key 'position' เท่านั้น
-  //       if (!isset($item['position'])) {
-  //         return false; // ไม่เอาเมนูที่ไม่มี position กำหนด
-  //       }
-
-  //       if ($userRole === 'Admin') {
-  //         // เมนูนี้มี position แสดงว่าให้ Admin เห็น
-  //         return true;
-  //       } else {
-  //         // สำหรับ user ทั่วไป ให้ตรวจสอบว่า userRole อยู่ใน position หรือไม่
-  //         return in_array($userRole, $item['position']);
-  //       }
-  //     })->map(function ($item) use ($userRole) {
-  //       if (isset($item['submenu'])) {
-  //         $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole) {
-  //           if (!isset($sub['position'])) {
-  //             return false; // ไม่เอา submenu ที่ไม่มี position
-  //           }
-
-  //           if (isset($sub['url'])) {
-
-  //           }
-
-  //           if ($userRole === 'Admin') {
-  //             return true; // Admin เห็น submenu ที่มี position
-  //           } else {
-  //             return in_array($userRole, $sub['position']);
-  //           }
-  //         })->values()->all();
-  //       }
-  //       return $item;
-  //     })->values()->all();
-
-  //     // ✅ เพิ่มเฉพาะตรงนี้ — ไม่ยุ่งกับโค้ดเดิมเลย
-
-  //     // $variables = [
-  //     //   'fullname_th' => Session::get('fullname_th', 'Guest User'),
-  //     //   'username' => Session::get('username', 'guest'),
-  //     // ];
-
-  //     // $replaceMenuVariables = function (array $menu) use (&$replaceMenuVariables, $variables) {
-  //     //   foreach ($menu as &$item) {
-  //     //     if (isset($item['url'])) {
-  //     //       foreach ($variables as $key => $value) {
-  //     //         $item['url'] = str_replace('{{ ' . $key . ' }}', $value, $item['url']);
-
-  //     //       }
-  //     //     }
-
-  //     //     if (isset($item['submenu'])) {
-  //     //       $item['submenu'] = $replaceMenuVariables($item['submenu']);
-  //     //       // dd($item['submenu']);
-
-  //     //     }
-  //     //   }
-
-  //     //   return $menu;
-  //     // };
-
-  //     // เรียกใช้ฟังก์ชันเพื่อแทนค่าตัวแปร
-  //     // $filteredMenu = $replaceMenuVariables($filteredMenu);
-  //     // dd($filteredMenu);
-
-  //     $fullname = Session::get('fullname_th', 'Guest');
-  //     $fullnameWithQuotes = '"คุณ' . $fullname . '"';
-
-  //     dd($filteredMenu);
-  //     // dd(json_decode(json_encode(['menu' => $filteredMenu])));
-
-  //     // ✅ ส่งไปยัง view ตามเดิม
-  //     $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
-  //   });
-  // }
-
-
-
-  // public function boot(): void
-  // {
-  //   View::composer('*', function ($view) {
-  //     $menuData = AuthController::getMenuJson();
-  //     $view->with('menuData', $menuData);
-  //   });
-  // }
 
   private function filterMenuByRole($menuItems, $position)
   {

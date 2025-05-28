@@ -23,7 +23,7 @@
             <div class="content-wrapper">
 
                 <!-- Content -->
-                <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="container-xxl flex-grow-1 container">
 
                     <h4 class="mb-1">Users List</h4>
                     <p class="mb-6">A position provided access to predefined menus and features so that depending

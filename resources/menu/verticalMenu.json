@@ -81,6 +81,10 @@
           "url": "/addusers",
           "position": [
             "Admin"
+          ],
+          "users": [
+            "Natee Ruanwong",
+            "Apichat Kaewhanam"
           ]
         }
       ]

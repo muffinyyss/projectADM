@@ -1,5 +1,5 @@
 @php
-    $currentUrl = request()->path(); // เช่น users หรือ users/create
+    $currentUrl = url()->current(); // เช่น users หรือ users/create
 @endphp
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -31,12 +31,13 @@
                 @continue
             @endif
 
-            {{-- ตรวจสอบถ้ามี submenu และ url ของ submenu ตรงกับ currentUrl ให้ใส่ class open ให้เมนูหลัก --}}
             @php
+                $str = \Illuminate\Support\Str::class;
                 $isOpen = false;
+
                 if (isset($menuItem->submenu)) {
                     foreach ($menuItem->submenu as $sub) {
-                        if (($sub->url ?? '') === $currentUrl) {
+                        if (isset($sub->url) && $str::startsWith($currentUrl, url($sub->url))) {
                             $isOpen = true;
                             break;
                         }
@@ -54,9 +55,12 @@
                 @if (isset($menuItem->submenu))
                     <ul class="menu-sub">
                         @foreach ($menuItem->submenu as $sub)
-                            <li class="menu-item {{ ($sub->url ?? '') === $currentUrl ? 'active' : '' }}">
+                            @php
+                                $isActiveSub = isset($sub->url) && $currentUrl === url($sub->url);
+                            @endphp
+                            <li class="menu-item {{ $isActiveSub ? 'active' : '' }}">
                                 <a href="{{ $sub->url ?? 'javascript:void(0);' }}"
-                                    class="menu-link {{ ($sub->url ?? '') === $currentUrl ? 'active' : '' }}">
+                                    class="menu-link {{ $isActiveSub ? 'active' : '' }}">
                                     <div>{{ $sub->name }}</div>
                                 </a>
                             </li>
