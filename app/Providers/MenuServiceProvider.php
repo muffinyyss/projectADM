@@ -32,15 +32,17 @@ class MenuServiceProvider extends ServiceProvider
       $userRole = Session::get('position', 'guest');
       $fullname = Session::get('fullname_th', 'Guest');
       $fullname_en = Session::get('fullname_en', 'Guest');
+
       $fullnameFormatted = '"เดือนนี้","' . 'คุณ' . $fullname . '"';
       $variables = [
         'fullname_th' => $fullnameFormatted,
-        'username' => Session::get('username', 'guest'),
+        'fullname_en' => $fullname_en,
+
       ];
 
       $menuList = $verticalMenuData['menu'] ?? [];
 
-      // ฟังก์ชันสำหรับแทนค่าตัวแปรใน URL
+      // แทนค่าตัวแปรใน URL เช่น {fullname_th}
       $replaceMenuVariables = function (array $menu) use (&$replaceMenuVariables, $variables) {
         foreach ($menu as &$item) {
           if (isset($item['url'])) {
@@ -56,13 +58,11 @@ class MenuServiceProvider extends ServiceProvider
         return $menu;
       };
 
-      // กรองเมนูตามตำแหน่ง
       $filteredMenu = collect($menuList)->filter(function ($item) use ($userRole, $fullname_en) {
 
-        // เช็คตำแหน่งเมนูหลักก่อน
         $hasPosition = isset($item['position']) && ($userRole === 'Admin' || in_array($userRole, $item['position']));
+        $hasUser = isset($item['users']) && is_array($item['users']) && in_array($fullname_en, $item['users']); // ✅ ใช้ fullname_en
 
-        // เช็ค submenu ว่ามี user อยู่ใน submenu ใดไหม
         $hasUserInSubmenu = false;
         if (isset($item['submenu'])) {
           foreach ($item['submenu'] as $sub) {
@@ -73,14 +73,11 @@ class MenuServiceProvider extends ServiceProvider
           }
         }
 
-        return $hasPosition || $hasUserInSubmenu;
+        return $hasPosition || $hasUser || $hasUserInSubmenu;
       })->map(function ($item) use ($userRole, $fullname_en) {
-        // กรอง submenu ตามตำแหน่งและ users
         if (isset($item['submenu'])) {
           $item['submenu'] = collect($item['submenu'])->filter(function ($sub) use ($userRole, $fullname_en) {
-            // ตำแหน่งผ่านหรือ admin
             $positionOk = isset($sub['position']) && ($userRole === 'Admin' || in_array($userRole, $sub['position']));
-            // ชื่อผู้ใช้อยู่ใน users ของ submenu
             $userOk = isset($sub['users']) && is_array($sub['users']) && in_array($fullname_en, $sub['users']);
 
             return $positionOk || $userOk;
@@ -89,16 +86,13 @@ class MenuServiceProvider extends ServiceProvider
         return $item;
       })->values()->all();
 
-
-      // 🔁 แทนค่าตัวแปรใน URL เช่น {fullname_th}
       $filteredMenu = $replaceMenuVariables($filteredMenu);
       // dd(json_decode(json_encode(['menu' => $filteredMenu])));
-      // ตรวจสอบผลลัพธ์ (ลบออกเมื่อเสร็จ)
-      // dd($filteredMenu);
 
       $view->with('menuData', json_decode(json_encode(['menu' => $filteredMenu])));
     });
   }
+
 
   private function filterMenuByRole($menuItems, $position)
   {
