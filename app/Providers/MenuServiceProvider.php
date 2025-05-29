@@ -128,8 +128,6 @@ class MenuServiceProvider extends ServiceProvider
     return $filtered;
   }
 
-
-
   private function arrayToObject($array)
   {
     return json_decode(json_encode($array));
